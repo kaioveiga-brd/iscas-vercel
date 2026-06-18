@@ -1,0 +1,4423 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta name="robots" content="noindex, nofollow">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise de Posicionamento Personalizada | Legado Branding</title>
+    <link rel="icon" href="favicon.png" type="image/png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rokkitt:wght@300;400;500;600;700;900&family=Petrona:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+
+        @font-face {
+            font-family: 'Bianca';
+            src: url('https://proposta-legado.vercel.app/BiancaScript.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        :root {
+            --preto: rgba(17, 17, 17, 0.95);
+            --preto-solido: #111111;
+            --cinza-escuro: rgba(26, 26, 26, 0.95);
+            --cinza-card: #1E1E1E;
+            --cinza-borda: #2C2C2C;
+            --cinza-medio: #444444;
+            --laranja: #E05A1C;
+            --laranja-hover: #F47340;
+            --laranja-suave: #C4724A;
+            --branco: #F5F1EB;
+            --branco-suave: rgba(245,241,235,0.7);
+            --branco-fraco: rgba(245,241,235,0.35);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--preto-solido);
+            color: var(--branco);
+            font-family: 'Petrona', serif;
+            line-height: 1.5;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Background Animado (The Infinite Grid) */
+        #grid-bg {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: -2;
+            background-color: var(--preto-solido);
+            background-image: 
+                linear-gradient(to right, rgba(224, 90, 28, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(224, 90, 28, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+            animation: scrollGrid 40s linear infinite;
+        }
+        #grid-glow {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: -1;
+            background-image: 
+                linear-gradient(to right, rgba(224, 90, 28, 0.12) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(224, 90, 28, 0.12) 1px, transparent 1px);
+            background-size: 30px 30px;
+            animation: scrollGrid 40s linear infinite;
+            mask-image: radial-gradient(180px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), black, transparent);
+            -webkit-mask-image: radial-gradient(180px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), black, transparent);
+            pointer-events: none;
+        }
+        @keyframes scrollGrid {
+            0% { background-position: 0 0; }
+            100% { background-position: 30px 30px; }
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Rokkitt', serif;
+            line-height: 1.15;
+            font-weight: 700;
+        }
+
+        .letra-ceifada {
+            font-family: 'Bianca', cursive;
+            color: var(--laranja);
+            font-size: 1.4em;
+            font-weight: normal;
+            display: inline-block;
+            line-height: 0.8;
+            margin-right: -0.1em;
+            transform: translateY(0.05em);
+            vertical-align: baseline;
+        }
+
+        .destaque-laranja {
+            color: var(--laranja);
+            font-weight: 600;
+        }
+
+        .hero-subtitle {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13.5px;
+            line-height: 1.6;
+            color: var(--branco-suave);
+            text-align: center;
+            max-width: 480px;
+            margin: 0 auto 24px;
+            font-weight: 400;
+        }
+
+        .hero-subtitle strong {
+            color: var(--branco);
+            font-weight: 600;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px; /* Mobile-first container limit */
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header e Marca */
+        header {
+            padding: 32px 0 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-bottom: 1px solid var(--cinza-borda);
+            background: rgba(17, 17, 17, 0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .logo {
+            text-align: center;
+        }
+
+        .logo-text {
+            font-family: 'Rokkitt', serif;
+            font-weight: 700;
+            font-size: 20px;
+            letter-spacing: 0.05em;
+            color: var(--branco);
+            text-transform: uppercase;
+        }
+
+        .logo-subtext {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600;
+            font-size: 8px;
+            letter-spacing: 0.25em;
+            color: var(--laranja);
+            margin-top: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Seções Gerais */
+        section {
+            padding: 48px 0;
+            border-bottom: 1px solid var(--cinza-borda);
+        }
+
+        .section-tag {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600;
+            font-size: 10px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--laranja);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .section-title {
+            font-size: 28px;
+            color: var(--branco);
+            margin-bottom: 16px;
+        }
+
+        .section-desc {
+            font-size: 15px;
+            color: var(--branco-suave);
+            margin-bottom: 24px;
+        }
+
+        /* Elementos e Componentes Específicos */
+        
+        /* 1. Abertura */
+        .hero-title {
+            font-size: 38px;
+            font-weight: 400;
+            line-height: 1.15;
+            margin-top: 12px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .hero-meta {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 11px;
+            color: var(--branco-suave);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .hero-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .hero-header-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 24px;
+            width: 100%;
+        }
+
+        .hero-lead-text {
+            font-family: 'Petrona', serif;
+            font-size: 15.5px;
+            line-height: 1.6;
+            color: var(--branco-suave);
+            background: rgba(224, 90, 28, 0.03);
+            border-left: 4px solid var(--laranja);
+            padding: 20px 24px;
+            margin: 32px 0;
+            font-style: italic;
+            border-radius: 0 8px 8px 0;
+            box-shadow: inset 0 0 15px rgba(224, 90, 28, 0.02);
+            border-top: 1px solid rgba(224, 90, 28, 0.05);
+            border-right: 1px solid rgba(224, 90, 28, 0.05);
+            border-bottom: 1px solid rgba(224, 90, 28, 0.05);
+        }
+
+        .scroll-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--branco-fraco);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 12px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-5px); }
+            60% { transform: translateY(-3px); }
+        }
+
+        /* 2. O que vimos no conteúdo */
+        /* Condicional 1: Engajamento */
+        .stat-box {
+            background: var(--cinza-card);
+            border: 1px solid var(--cinza-borda);
+            border-radius: 6px;
+            padding: 24px;
+            margin-bottom: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-value {
+            font-family: 'Rokkitt', serif;
+            font-size: 52px;
+            font-weight: 700;
+            color: var(--laranja);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--branco-suave);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 16px;
+        }
+
+        .stat-comparison {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            border-top: 1px solid var(--cinza-borda);
+            padding-top: 16px;
+        }
+
+        .comp-row {
+            display: flex;
+            justify-content: space-between;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+        }
+
+        .comp-label {
+            color: var(--branco-suave);
+        }
+
+        .comp-val {
+            font-weight: 600;
+            color: var(--branco);
+        }
+
+        .stat-badge {
+            background: rgba(224, 90, 28, 0.15);
+            color: var(--laranja-hover);
+            border: 1px solid rgba(224, 90, 28, 0.3);
+            font-size: 11px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-top: 8px;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+        }
+
+        /* Condicional 2: Distribuição */
+        .dist-chart {
+            background: var(--cinza-card);
+            border: 1px solid var(--cinza-borda);
+            border-radius: 6px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .chart-row {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .chart-labels {
+            display: flex;
+            justify-content: space-between;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 12px;
+        }
+
+        .chart-name {
+            color: var(--branco-suave);
+            font-weight: 500;
+        }
+
+        .chart-pct {
+            font-weight: 600;
+        }
+
+        .chart-bar-container {
+            width: 100%;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .chart-bar {
+            height: 100%;
+            border-radius: 5px;
+            background: var(--cinza-medio);
+            transition: width 1s ease;
+        }
+
+        .chart-bar.dominant {
+            background: var(--laranja);
+            box-shadow: 0 0 10px rgba(224, 90, 28, 0.4);
+        }
+
+        /* 3. Ativo Desperdiçado */
+        .ativo-box {
+            background: linear-gradient(145deg, #222222, #181818);
+            border: 1px solid var(--laranja);
+            border-radius: 6px;
+            padding: 24px 20px;
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        .ativo-title {
+            font-size: 20px;
+            color: var(--branco);
+            font-family: 'Rokkitt', serif;
+            font-weight: 600;
+        }
+
+        .ativo-bullets {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 12px;
+            padding-left: 0;
+            text-align: left;
+        }
+
+        .ativo-bullets li {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13.5px;
+            color: var(--branco-suave);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            line-height: 1.4;
+        }
+
+        .ativo-bullets li::before {
+            content: '✦';
+            color: var(--laranja);
+            font-weight: bold;
+            flex-shrink: 0;
+            margin-top: 2.5px;
+        }
+
+        .lacuna-box {
+            margin-top: 36px;
+            padding: 24px 0;
+            border-top: 1px dashed var(--cinza-borda);
+            text-align: center;
+        }
+
+        .lacuna-label {
+            font-family: 'Rokkitt', serif;
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--branco);
+            text-transform: none;
+            letter-spacing: -0.01em;
+            margin-bottom: 24px;
+            display: block;
+            text-align: center;
+        }
+
+        .lacuna-cards-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .lacuna-card {
+            background: var(--cinza-card);
+            border: 1px solid var(--cinza-borda);
+            border-radius: 6px;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            transition: all 0.3s ease;
+        }
+
+        .lacuna-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .card-entrega {
+            border-left: 4px solid var(--laranja);
+            background: rgba(224, 90, 28, 0.04);
+            padding: 24px 20px;
+            box-shadow: 0 0 15px rgba(224, 90, 28, 0.15);
+            animation: card-glow 2s infinite alternate;
+        }
+
+        @keyframes card-glow {
+            0% { box-shadow: 0 0 8px rgba(224, 90, 28, 0.1); border-color: rgba(224, 90, 28, 0.4); }
+            100% { box-shadow: 0 0 24px rgba(224, 90, 28, 0.45); border-color: var(--laranja-hover); }
+        }
+
+        .card-entrega .lacuna-card-content p {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--branco);
+        }
+
+        .card-comunica {
+            border-left: 3px solid var(--cinza-medio);
+            background: rgba(26, 26, 26, 0.3);
+            padding: 12px 16px;
+            opacity: 0.65;
+        }
+
+        .card-comunica .lacuna-card-content p {
+            font-size: 13.5px;
+            color: #aaaaaa;
+        }
+
+        .lacuna-icon-circle {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .bg-check {
+            background: rgba(224, 90, 28, 0.15);
+            color: var(--laranja);
+        }
+
+        .bg-alert {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--branco-fraco);
+        }
+
+        .lacuna-card-content h4 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--branco-fraco);
+            margin-bottom: 6px;
+        }
+
+        .lacuna-card-content p {
+            font-family: 'Rokkitt', serif;
+            color: var(--branco);
+            line-height: 1.35;
+        }
+
+        .badge-analise {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(224, 90, 28, 0.1);
+            border: 1px solid rgba(224, 90, 28, 0.25);
+            color: var(--laranja);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .ativo-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .ativo-icon {
+            color: var(--laranja);
+            flex-shrink: 0;
+        }
+
+        .dot-oportunidade {
+            background: rgba(224, 90, 28, 0.25);
+            color: var(--laranja-hover);
+            border: 1px solid var(--laranja);
+            font-weight: 700;
+            box-shadow: 0 0 15px rgba(224, 90, 28, 0.4);
+            animation: pulse-glow 2s infinite alternate;
+            z-index: 4;
+        }
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 8px rgba(224, 90, 28, 0.3); transform: scale(1); }
+            100% { box-shadow: 0 0 22px rgba(224, 90, 28, 0.7); transform: scale(1.08); }
+        }
+
+        /* 4 e 5. Seções Borradas com Legenda Nítida */
+        .mercado-legenda-card {
+            background: var(--cinza-card);
+            border: 1px solid var(--cinza-borda);
+            border-left: 4px solid var(--laranja);
+            border-radius: 6px;
+            padding: 24px 20px;
+            margin-top: 16px;
+            text-align: left;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .blurred-container {
+            position: relative;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid var(--cinza-borda);
+            background: rgba(20, 20, 20, 0.4);
+            margin-top: 16px;
+        }
+
+        .blur-wrapper {
+            transition: all 0.5s ease;
+            padding: 20px 10px;
+            position: relative;
+        }
+
+        .blur-row {
+            filter: blur(5px);
+            opacity: 0.35;
+            user-select: none;
+            pointer-events: none;
+            -webkit-user-select: none;
+        }
+
+        .table-fader-banner {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 60px 20px 20px;
+            background: linear-gradient(to top, #111111 65%, rgba(17, 17, 17, 0) 100%);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            z-index: 5;
+        }
+
+        .table-fader-banner p {
+            font-family: 'Rokkitt', serif;
+            font-size: 15px;
+            color: var(--branco);
+            font-weight: 600;
+        }
+
+        .table-fader-banner span {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 11px;
+            color: var(--laranja);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 4px;
+            font-weight: 600;
+        }
+
+        .overlay-title {
+            font-family: 'Rokkitt', serif;
+            font-size: 18px;
+            color: var(--branco);
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .overlay-desc {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 12px;
+            color: var(--branco-suave);
+            line-height: 1.5;
+        }
+
+        /* 4. Mercado (Mapa Posicionamento) */
+        .positioning-map {
+            width: 100%;
+            height: 240px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            border: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+            margin: 10px 0;
+            background-color: var(--preto-solido);
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.8);
+        }
+
+        .positioning-map::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: var(--map-bg, none);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.08; /* Opacidade bem suave para não atrapalhar a leitura dos eixos */
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .map-axis-y {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: rgba(255, 255, 255, 0.15);
+            z-index: 1;
+        }
+
+        .map-axis-x {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.15);
+            z-index: 1;
+        }
+
+        .map-label {
+            position: absolute;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--branco-fraco);
+            padding: 4px;
+            z-index: 2;
+        }
+        .label-top { top: 4px; left: 50%; transform: translateX(-50%); }
+        .label-bottom { bottom: 4px; left: 50%; transform: translateX(-50%); }
+        .label-left { left: 4px; top: 50%; transform: translateY(-50%); }
+        .label-right { right: 4px; top: 50%; transform: translateY(-50%); }
+
+        .map-dot {
+            position: absolute;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+            font-size: 10px;
+            white-space: nowrap;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            z-index: 3;
+        }
+
+        .dot-competitor {
+            background: var(--cinza-medio);
+            color: var(--branco-suave);
+            border: 1px solid var(--cinza-borda);
+        }
+
+        .dot-prospect {
+            background: var(--laranja);
+            color: var(--preto-solido);
+            border: 1px solid var(--laranja-hover);
+            font-weight: 700;
+        }
+
+        /* 5. Tabela Auditoria */
+        .audit-table-container {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        .audit-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 11px;
+            text-align: left;
+        }
+
+        .audit-table th {
+            border-bottom: 2px solid var(--cinza-borda);
+            padding: 8px 6px;
+            color: var(--branco-suave);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 9px;
+            letter-spacing: 0.05em;
+        }
+
+        .audit-table td {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 8px 6px;
+            color: var(--branco-fraco);
+            white-space: nowrap;
+        }
+
+        .audit-table tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.01);
+        }
+
+        .table-badge-ok {
+            background: rgba(224, 90, 28, 0.15);
+            color: var(--laranja-suave);
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .table-badge-critico {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--branco-suave);
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        /* 6. O Gap */
+        .gap-text {
+            font-family: 'Petrona', serif;
+            font-size: 18px;
+            line-height: 1.6;
+            color: var(--branco-suave);
+            text-align: center;
+        }
+
+        .gap-text em {
+            color: var(--branco);
+            font-style: normal;
+            font-weight: 500;
+        }
+
+        .gap-highlight {
+            color: var(--laranja-suave);
+            font-weight: 600;
+        }
+
+        .visual-gap-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            gap: 12px;
+            margin: 36px 0 24px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 11px;
+        }
+        
+        .gap-text-left {
+            color: #888888;
+            text-transform: lowercase;
+            font-style: italic;
+            white-space: nowrap;
+        }
+        
+        .gap-text-right {
+            color: var(--laranja);
+            font-weight: 600;
+            text-transform: lowercase;
+            font-style: italic;
+            white-space: nowrap;
+        }
+        
+        .gap-divider {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+            gap: 8px;
+            min-width: 80px;
+        }
+        
+        .gap-line {
+            height: 1px;
+            flex-grow: 1;
+        }
+        
+        .gap-line-left {
+            background: linear-gradient(90deg, transparent, var(--cinza-medio));
+        }
+
+        .gap-line-right {
+            background: linear-gradient(90deg, var(--laranja), transparent);
+        }
+        
+        .gap-badge {
+            background: rgba(224, 90, 28, 0.1);
+            border: 1px solid rgba(224, 90, 28, 0.3);
+            color: var(--branco);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            white-space: nowrap;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        /* 7. CTA */
+        .cta-section {
+            background: linear-gradient(to bottom, var(--preto-solido), rgba(224, 90, 28, 0.05));
+            text-align: center;
+            padding: 60px 0 80px;
+            border-bottom: none;
+        }
+
+        .btn-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 340px;
+            background-color: var(--laranja);
+            color: var(--preto-solido);
+            border: 1px solid var(--laranja);
+            padding: 18px 24px;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 24px rgba(224, 90, 28, 0.25);
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 12px;
+        }
+
+        .btn-cta:hover {
+            background-color: var(--laranja-hover);
+            border-color: var(--laranja-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(224, 90, 28, 0.4);
+        }
+
+        .btn-cta:active {
+            transform: translateY(0);
+        }
+
+        .cta-subnote {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 11px;
+            color: var(--branco-fraco);
+            margin-top: 16px;
+            letter-spacing: 0.02em;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid var(--cinza-borda);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 10px;
+            color: var(--branco-fraco);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .footer-contacts {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 16px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 11px;
+            text-transform: none;
+            letter-spacing: normal;
+        }
+
+        .footer-contacts a {
+            color: var(--branco-suave);
+            text-decoration: none;
+            transition: color 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .footer-contacts a:hover {
+            color: var(--branco);
+        }
+
+        .footer-contacts a svg {
+            color: var(--laranja);
+            transition: transform 0.2s, color 0.2s;
+        }
+
+        .footer-contacts a:hover svg {
+            color: var(--laranja-hover);
+            transform: scale(1.1);
+        }
+
+        /* Debug / Switcher Tool (Floating Panel) */
+        #prospect-switcher {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            background: rgba(34, 34, 34, 0.95);
+            border: 1px solid var(--laranja);
+            padding: 8px 16px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: opacity 0.3s ease;
+        }
+
+        #prospect-switcher select {
+            background: #111;
+            color: var(--branco);
+            border: 1px solid var(--cinza-borda);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 12px;
+            cursor: pointer;
+            outline: none;
+        }
+
+        #prospect-switcher select:focus {
+            border-color: var(--laranja);
+        }
+
+        .btn-copy {
+            background: var(--laranja);
+            color: #111;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-copy:hover {
+            background: var(--laranja-hover);
+        }
+
+        .switcher-label {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--branco-suave);
+            text-transform: uppercase;
+        }
+
+        /* Oculta o switcher se p=no-switcher estiver na URL */
+        .hide-switcher #prospect-switcher {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Animado -->
+    <div id="grid-bg"></div>
+    <div id="grid-glow"></div>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo">
+            <img src="logo legado.png" alt="Legado Branding" style="height: 38px; width: auto; display: block;" />
+        </div>
+    </header>
+
+    <!-- CONTAINER PRINCIPAL (MOBILE-FIRST) -->
+    <main class="container">
+
+        <!-- 1. ABERTURA (NÍTIDO) -->
+        <section id="abertura">
+            <div class="hero-header-row">
+                <div class="badge-analise">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-right: 6px;"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                    Diagnóstico de Percepção
+                </div>
+                <div class="hero-meta">
+                    <span>📍 <span id="val-cidade">Cidade</span></span>
+                    <span>🎯 Análise de Canal</span>
+                </div>
+            </div>
+            <h1 class="hero-title"><span class="letra-ceifada">O</span>portunidade de Posicionamento para a <span id="val-nome-prospect" style="color: var(--laranja); white-space: nowrap; font-weight: 800;">Marca</span></h1>
+            
+            <p class="hero-subtitle">
+                Estudamos com profundidade o mercado de <strong id="val-nicho-cidade-label">Nicho de Cidade</strong> e mapeamos os canais de comunicação da sua marca para identificar gargalos de percepção.
+            </p>
+
+            <div class="hero-lead-text" id="val-frase-abertura">
+                "Olhamos o <span id="val-nicho-text">nicho</span> de vocês e o mercado de <span id="val-cidade-text">cidade</span>. Existe uma força extraordinária na história de vocês que já está aí dentro, mas que ainda não está sendo traduzida na comunicação."
+            </div>
+
+            <div class="scroll-indicator">
+                <span>Rolar para ver análise</span> ↓
+            </div>
+        </section>
+
+        <!-- 2. O QUE VIMOS NO CONTEÚDO (NÍTIDO, CONDICIONAL) -->
+        <section id="vimos-conteudo">
+            <span class="section-tag">O que vimos no conteúdo</span>
+            
+            <!-- Bloco 2A: Exibido se o Achado Mais Forte for "engajamento" -->
+            <div id="achado-engajamento" style="display: none;">
+                <h2 class="section-title" id="val-diagnosis-title-eng">Volume vs. Conexão Real</h2>
+                <p class="section-desc" id="val-diagnosis-desc-eng">
+                    O tamanho da sua base de seguidores não condiz com as conversas reais acontecendo nos posts. Há um descompasso claro de interesse.
+                </p>
+                <div class="stat-box">
+                    <div class="stat-value" id="val-seguidores">0k</div>
+                    <div class="stat-label">Seguidores no Instagram</div>
+                    <div class="stat-comparison">
+                        <div class="comp-row">
+                            <span class="comp-label">Taxa de Engajamento Real:</span>
+                            <span class="comp-val" id="val-taxa-engajamento">0.0%</span>
+                        </div>
+                        <div class="comp-row" id="val-ressalva-row" style="margin-top: 4px;">
+                            <span class="comp-label" style="font-size: 11px; font-style: italic; color: var(--branco-fraco);" id="val-ressalva">Ressalva</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="section-desc" style="font-size: 14px; margin-bottom: 0;">
+                    <em>O diagnóstico:</em> <span id="val-diagnosis-text-eng">A audiência está passiva. Sua marca publica muito volume, mas o público lê como ruído institucional, não como valor que gera resposta.</span>
+                </p>
+            </div>
+
+            <!-- Bloco 2B: Exibido se o Achado Mais Forte for "distribuicao" -->
+            <div id="achado-distribuicao" style="display: none;">
+                <h2 class="section-title" id="val-diagnosis-title-dist">Distribuição de Esforço</h2>
+                <p class="section-desc" id="val-diagnosis-desc-dist">
+                    Mapeamos onde o seu time gasta mais tempo produzindo conteúdo e onde está a real força de conversão da marca.
+                </p>
+                <div class="dist-chart" id="val-chart-container">
+                    <!-- Gerado dinamicamente via Javascript -->
+                </div>
+                <p class="section-desc" id="val-diagnosis-text-dist" style="font-size: 14px; margin-bottom: 0;">
+                    Sua marca está sobrecarregando a produção em formatos que o algoritmo entrega pouco ou que não provam autoridade, deixando a real substância em segundo plano.
+                </p>
+            </div>
+        </section>
+
+        <!-- 3. O ATIVO QUE VOCÊS NÃO ESTÃO USANDO (NÍTIDO — CORAÇÃO DA PÁGINA) -->
+        <section id="ativo-desperdicado">
+            <span class="section-tag">O Ativo Adormecido</span>
+            <h2 class="section-title">O que vocês já têm e está sendo desperdiçado</h2>
+            <p class="section-desc">
+                Não é sobre criar algo do zero, mas sobre iluminar o ativo de maior valor que vocês já construíram e hoje está oculto.
+            </p>
+
+            <div class="ativo-box">
+                <div class="ativo-header">
+                    <svg class="ativo-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    <h3 class="ativo-title" id="val-ativo-desperdicado">Ativo Desperdiçado</h3>
+                </div>
+                <ul class="ativo-bullets" id="val-ativo-bullets">
+                    <!-- Bullets do Ativo serão injetados dinamicamente via JS -->
+                </ul>
+            </div>
+
+            <div class="lacuna-box">
+                <span class="lacuna-label">A Lacuna de Posicionamento</span>
+                
+                <div class="lacuna-cards-container">
+                    <!-- Card de Comunicação (Erro Digital) - Aparece primeiro, em cinza e menor -->
+                    <div class="lacuna-card card-comunica">
+                        <div class="lacuna-icon-circle bg-alert">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                        </div>
+                        <div class="lacuna-card-content">
+                            <h4 style="color: #888888; font-weight: 600;">O ERRO NO DIGITAL:</h4>
+                            <p id="val-lacuna-comunica">Comunicação rasa...</p>
+                        </div>
+                    </div>
+
+                    <!-- Card de Entrega (Oportunidade Real) - Aparece depois, maior e com glow pulsante -->
+                    <div class="lacuna-card card-entrega">
+                        <div class="lacuna-icon-circle bg-check" style="background: rgba(224, 90, 28, 0.2); color: var(--laranja);">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        </div>
+                        <div class="lacuna-card-content">
+                            <h4 style="color: var(--laranja); font-weight: 700;">A OPORTUNIDADE REAL:</h4>
+                            <p id="val-lacuna-entrega">Entrega real...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. O MERCADO (BORRADO) -->
+        <section id="mercado-concorrencia">
+            <span class="section-tag">O Contexto Competitivo</span>
+            <h2 class="section-title">O Mercado de <span id="val-cidade-mercado">Cidade</span></h2>
+            
+            <!-- Descrição Nítida no Topo -->
+            <div class="mercado-legenda-card">
+                <div class="lacuna-icon-circle bg-alert" style="margin-bottom: 12px; width: 36px; height: 36px;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><line x1="12" y1="2" x2="12" y2="22"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                </div>
+                <h3 class="overlay-title" style="font-size: 19px; margin-bottom: 8px;">Mapeamos os concorrentes de <span id="val-cidade-overlay">Cidade</span></h3>
+                <p class="overlay-desc" id="val-mercado-desc" style="font-size: 13px; line-height: 1.5; color: var(--branco-suave);">
+                    Mapeamos os concorrentes e encontramos um espaço vazio de posicionamento que ninguém está ocupando. O território de diferenciação de elite está livre.
+                </p>
+            </div>
+
+            <div class="blurred-container" style="margin-top: 16px;">
+                <!-- Mapa Parcialmente Borrado por Baixo -->
+                <div class="blur-wrapper">
+                    <div class="positioning-map" id="map-container">
+                        <div class="map-axis-y"></div>
+                        <div class="map-axis-x"></div>
+                        <div class="map-label label-top">👑 Narrativo (Status)</div>
+                        <div class="map-label label-bottom">📋 Informativo (Básico)</div>
+                        <div class="map-label label-left">📦 Commodity</div>
+                        <div class="map-label label-right">💎 Premium / Elite</div>
+                        
+                        <!-- Dots dinâmicos de concorrentes (borrados) e prospect/oportunidade (nítidos) -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. O QUE LEVANTAMOS (BORRADO) -->
+        <section id="auditoria-conteudo">
+            <span class="section-tag">Volume de Pesquisa</span>
+            <h2 class="section-title">Auditoria Individual de Posts</h2>
+            
+            <div class="mercado-legenda-card">
+                <div class="lacuna-icon-circle bg-check" style="margin-bottom: 12px; width: 36px; height: 36px;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                </div>
+                <h3 class="overlay-title" style="font-size: 19px; margin-bottom: 8px;">Esta é apenas parte da análise profunda</h3>
+                <p class="overlay-desc" style="font-size: 13px; line-height: 1.5; color: var(--branco-suave);">
+                    Auditamos individualmente de 15 a 20 posts recentes da sua marca. Abaixo você vê uma amostra das primeiras auditorias nítidas, comprovando o mapeamento real.
+                </p>
+            </div>
+
+            <div class="blurred-container" style="position: relative; overflow: hidden; margin-top: 16px;">
+                <!-- Tabela Parcialmente Borrada por Baixo -->
+                <div class="blur-wrapper" style="padding-bottom: 90px; padding-left: 0; padding-right: 0;">
+                    <div class="audit-table-container">
+                        <table class="audit-table">
+                            <thead>
+                                <tr>
+                                    <th style="padding-left: 16px;">Post / Data</th>
+                                    <th>Formato</th>
+                                    <th>Engajamento</th>
+                                    <th style="padding-right: 16px;">Percepção</th>
+                                </tr>
+                            </thead>
+                            <tbody id="audit-table-body">
+                                <!-- Preenchido dinamicamente (primeiras 3 nítidas, resto com blur-row) -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Degradê e Banner Nítido no Rodapé da Tabela -->
+                <div class="table-fader-banner">
+                    <p>✦ Mais 12 posts auditados e classificados de forma confidencial.</p>
+                    <span>Agende a conversa de 20 minutos para abrir o relatório completo.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. O GAP (NÍTIDO) -->
+        <section id="o-gap" style="background: rgba(26, 26, 26, 0.4);">
+            <div class="container">
+                <div class="gap-text">
+                    Existe uma distância evidente entre o que a marca <span id="val-nome-prospect-gap" style="color: var(--branco); font-weight: 600; white-space: nowrap;">vocês</span> entrega no dia a dia e o que ela de fato comunica no digital.
+                    
+                    <div class="visual-gap-row">
+                        <span class="gap-text-left">o que comunica</span>
+                        <div class="gap-divider">
+                            <span class="gap-line gap-line-left"></span>
+                            <span class="gap-badge" id="val-gap-client-badge">cliente</span>
+                            <span class="gap-line gap-line-right"></span>
+                        </div>
+                        <span class="gap-text-right">o que é</span>
+                    </div>
+                    
+                    <span class="gap-highlight">Fechar essa lacuna</span> é o que constrói desejo verdadeiro e enche turmas de forma consistente ao longo de todo o ano, sem depender de queimas de preço ou desespero de final de temporada.
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. CTA (NÍTIDO) -->
+        <section class="cta-section">
+            <span class="section-tag">Próximo Passo</span>
+            <h2 class="section-title" style="font-size: 30px; margin-bottom: 12px;">Ver o Território Completo</h2>
+            <p class="section-desc" style="max-width: 450px; margin: 0 auto 24px;">
+                Agende uma conversa de 20 minutos. Vamos abrir o mapa de concorrentes sem borrão, entregar a auditoria de posts completa e desenhar o caminho de posicionamento.
+            </p>
+
+            <a href="#" class="btn-cta" id="val-cta-btn" target="_blank">
+                Quero ver o mapa completo
+            </a>
+            
+            <p class="cta-subnote">Sem custo · Diagnóstico prático para fundadores</p>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-contacts">
+            <a href="https://wa.me/5519992253680" target="_blank">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                (19) 99225-3680
+            </a>
+            <a href="https://legadobranding.com.br" target="_blank">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                legadobranding.com.br
+            </a>
+            <a href="https://instagram.com/studio.legado" target="_blank">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                @studio.legado
+            </a>
+        </div>
+        <div style="margin-top: 16px; opacity: 0.6;">Legado Branding · © 2026 · Uso Interno Reservado</div>
+    </footer>
+
+    <!-- SWITCHER DE TESTES (FLOAT) -->
+    <div id="prospect-switcher">
+        <span class="switcher-label">Prospect:</span>
+        <select id="select-prospect">
+            <option value="borges">Curso Borges (Idiomas)</option>
+            <option value="excellent">Excellent Global (Idiomas)</option>
+            <option value="abaporueducacional">Abaporu Educacional (Cursinho)</option>
+            <option value="assetingles">Asset Inglês (Idiomas)</option>
+            <option value="blackwhiteschool">Black White School (Idiomas)</option>
+            <option value="cursogalileo">Curso Galileo (Cursinho)</option>
+            <option value="daccordidiomas">D'Accord Idiomas (Idiomas)</option>
+            <option value="eweschool">E.W.E School (Idiomas)</option>
+            <option value="englishyou">English You (Idiomas)</option>
+            <option value="exatoassessoriaestudantil">Exato Assessoria Estudantil (Cursinho)</option>
+            <option value="flexuspalavrizar">Flexus Palavrizar (Cursinho)</option>
+            <option value="getfluentenglishcenter">Get Fluent English Center (Idiomas)</option>
+            <option value="interchangeidiomas">Interchange Idiomas (Idiomas)</option>
+            <option value="londonenglishschool">London English School (Idiomas)</option>
+            <option value="michiganidiomas">Michigan Idiomas (Idiomas)</option>
+            <option value="mundoenem">Mundo Enem (Cursinho)</option>
+            <option value="progressovestibulares">Progresso Vestibulares (Cursinho)</option>
+            <option value="purrfectidiomas">Purrfect Idiomas (Idiomas)</option>
+            <option value="thehousepiracicaba">The House Piracicaba (Idiomas)</option>
+            <option value="whynotinstitute">Why Not Institute (Idiomas)</option>
+        </select>
+        <button class="btn-copy" id="btn-copy-link" title="Copiar Link Personalizado">Copiar Link</button>
+    </div>
+
+    <!-- LOGICA E DADOS (JAVASCRIPT) -->
+    <script>
+        // BANCO DE DADOS DE PROSPECTS DE EXEMPLO (ALINHADO COM OS DADOS REAIS DO BRIEFING)
+        const PROSPECTS_DB = {
+    "borges": {
+        "nomeProspect": "Curso Borges",
+        "nicho": "cursinho militar",
+        "cidade": "Campinas",
+        "instagram": "@cursoborges",
+        "seguidores": "1.624",
+        "taxaEngajamento": "1.09%",
+        "ressalva": "Engajamento no Limite. O público militar é apaixonado e vibrante, mas a comunicação atual é fria e burocrática. Os picos de engajamento ocorrem apenas quando há fotos reais de visitas a quartéis ou quando o Fernando aparece.",
+        "achadoMaisForte": "ativo",
+        "distribuicaoConteudo": [
+            {
+                "tipo": "Institucional (Avisos/Editais)",
+                "pct": 60,
+                "dominant": true
+            },
+            {
+                "tipo": "Posicionamento/Autoridade (Aprovados/Tradição)",
+                "pct": 30,
+                "dominant": false
+            },
+            {
+                "tipo": "Bastidor / Cultura / Visão do Fundador",
+                "pct": 10,
+                "dominant": false
+            }
+        ],
+        "ativoDesperdicado": "O Legado de 30 Anos de Disciplina",
+        "fraseAbertura": "Olhamos o cursinho militar de vocês e o mercado de Campinas. Existe uma <span class='destaque-laranja'>história fantástica de quase 30 anos de disciplina e centenas de aprovados</span> que deveria ser o maior orgulho da marca, mas hoje está escondida sob artes frias e institucionais.",
+        "evidencia": [
+            "<strong>História Imbatível:</strong> Mais de 30 anos de atuação preparando alunos para as carreiras militares mais difíceis (EsPCEx, EsSA, PM, etc.).",
+            "<strong>Cultura de Pertencimento:</strong> A energia vibrante da caserna, o espírito de disciplina e o orgulho militar reais vividos na sala de aula.",
+            "<strong>Mentoria de Liderança:</strong> O Prof. Fernando Descovi oferece um trabalho pessoal extraordinário que é escondido no digital."
+        ],
+        "lacuna": {
+            "entrega": "preparação de elite e disciplina rígida para as carreiras militares mais difíceis",
+            "comunica": "uma estética fria, burocrática e datada de 'escola de datilografia' dos anos 90"
+        },
+        "categoriaAtual": "Curso preparatório para concursos das escolas militares (EsSA, EsPCEx, PM, etc.) em Campinas desde 1994.",
+        "prospectX": 30,
+        "prospectY": 15,
+        "diagnosisTitle": "",
+        "diagnosisDesc": "",
+        "diagnosisText": "",
+        "mercadoDesc": "Em Campinas, a concorrência se divide entre o modelo EAD de massa (Estratégia Militares) e preparatórios de nicho que tentam abraçar tudo (Elite Campinas). O território para um posicionamento puramente focado em disciplina de elite presencial militar está livre para o Borges ocupar.",
+        "concorrentes": [
+            {
+                "nome": "Elite Campinas",
+                "x": 80,
+                "y": 70,
+                "pos": "Nicho militar e pré-vestibular de alto nível"
+            },
+            {
+                "nome": "Estratégia Militares",
+                "x": 20,
+                "y": 45,
+                "pos": "Gigante EAD focado em preço baixo e escala"
+            },
+            {
+                "nome": "Curso Galileo",
+                "x": 60,
+                "y": 25,
+                "pos": "Concorrente regional com foco universitário tradicional"
+            }
+        ],
+        "auditoria": [
+            {
+                "data": "10/06/2026",
+                "formato": "Estático - Institucional",
+                "engajamento": "~12 / 0",
+                "percepção": "Frio / Ruído Burocrático",
+                "status": "crítico"
+            },
+            {
+                "data": "08/06/2026",
+                "formato": "Estático - Posic./Autoridade",
+                "engajamento": "~15 / 1",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            },
+            {
+                "data": "17/05/2026",
+                "formato": "Estático - Institucional",
+                "engajamento": "~18 / 2",
+                "percepção": "Aviso de Edital Comum",
+                "status": "crítico"
+            },
+            {
+                "data": "25/04/2026",
+                "formato": "Estático - Bastidor/Cultura",
+                "engajamento": "~25 / 3",
+                "percepção": "Bom Potencial (Falta vibração)",
+                "status": "ok"
+            },
+            {
+                "data": "12/03/2026",
+                "formato": "Reels - Visão Fundador",
+                "engajamento": "~30 / 5",
+                "percepção": "Humano e Técnico (Fernando Descovi)",
+                "status": "ok"
+            },
+            {
+                "data": "15/02/2026",
+                "formato": "Estático - Institucional",
+                "engajamento": "~10 / 0",
+                "percepção": "Informativo Frio",
+                "status": "crítico"
+            },
+            {
+                "data": "12/01/2026",
+                "formato": "Estático - Posic./Autoridade",
+                "engajamento": "~40 / 6",
+                "percepção": "Tradição de Aprovados",
+                "status": "ok"
+            },
+            {
+                "data": "22/12/2025",
+                "formato": "Estático - Institucional",
+                "engajamento": "~8 / 0",
+                "percepção": "Burocrático",
+                "status": "crítico"
+            },
+            {
+                "data": "10/11/2025",
+                "formato": "Estático - Posic./Autoridade",
+                "engajamento": "~12 / 1",
+                "percepção": "Aprovados Sem Histórias",
+                "status": "crítico"
+            },
+            {
+                "data": "24/10/2025",
+                "formato": "Estático - Institucional",
+                "engajamento": "~7 / 0",
+                "percepção": "Frio e Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "15/09/2025",
+                "formato": "Estático - Institucional",
+                "engajamento": "~14 / 0",
+                "percepção": "Informativo Burocrático",
+                "status": "crítico"
+            },
+            {
+                "data": "20/08/2025",
+                "formato": "Reels - Visão Fundador",
+                "engajamento": "~35 / 4",
+                "percepção": "Mentoria de Liderança",
+                "status": "ok"
+            },
+            {
+                "data": "12/07/2025",
+                "formato": "Estático - Posic./Autoridade",
+                "engajamento": "~28 / 2",
+                "percepção": "Tradição Sem Emoção",
+                "status": "ok"
+            },
+            {
+                "data": "05/06/2025",
+                "formato": "Estático - Institucional",
+                "engajamento": "~9 / 0",
+                "percepção": "Aviso Frio",
+                "status": "crítico"
+            },
+            {
+                "data": "18/05/2025",
+                "formato": "Estático - Bastidor/Cultura",
+                "engajamento": "~22 / 2",
+                "percepção": "Quartel / Visitas externas",
+                "status": "ok"
+            }
+        ]
+    },
+    "excellent": {
+        "nomeProspect": "Excellent Global",
+        "nicho": "escola de idiomas",
+        "cidade": "Rio Claro",
+        "instagram": "@excellentglobalrioclaro",
+        "seguidores": "1.180",
+        "taxaEngajamento": "0.99%",
+        "ressalva": "Engajamento Morto. A estratégia de follow/unfollow (seguem 2.1k pessoas) gerou uma base que não interage. O conteúdo é ignorado pela maioria dos seguidores.",
+        "achadoMaisForte": "engajamento",
+        "distribuicaoConteudo": null,
+        "ativoDesperdicado": "A Promessa de Rapidez Extrema (3 meses)",
+        "fraseAbertura": "Olhamos o cursinho de idiomas de vocês e o mercado de Rio Claro. Há uma <span class='destaque-laranja'>promessa disruptiva de velocidade e fluência avançada em 3 meses</span> que representa um diferencial matador, mas a marca hoje está presa sob a estética fria e genérica de posts padronizados da franquia.",
+        "evidencia": [
+            "<strong>Rapidez Disruptiva:</strong> Fluência avançada in 3 meses através de um curso de imersão de altíssimo valor.",
+            "<strong>Metodologia Não-Linear:</strong> Foco em conversação prática e fala antes da gramática, imitando o aprendizado natural.",
+            "<strong>Público Qualificado:</strong> Excelente alternativa para executivos e profissionais de Rio Claro que não têm tempo a perder."
+        ],
+        "lacuna": {
+            "entrega": "uma promessa disruptiva de velocidade e fluência de alta performance",
+            "comunica": "uma comunicação fria de mural de dicas genéricas e padronizadas da rede"
+        },
+        "categoriaAtual": "Excellent Global Rio Claro: Metodologia exclusiva não-linear, nível com o inglês!",
+        "prospectX": 80,
+        "prospectY": 30,
+        "diagnosisTitle": "A Prisão da Franquia & Engajamento Morto",
+        "diagnosisDesc": "Artes frias e corporativas da rede que anulam a presença e a alma do dono-operador local de Rio Claro.",
+        "diagnosisText": "A unidade de Rio Claro possui um método de imersão de altíssimo valor (fluência em 3 meses), mas sua comunicação é sequestrada por posts institucionais frios da matriz. Isso anula a presença do dono local e transforma a promessa de aceleração em mais uma commodity genérica aos olhos do público.",
+        "mercadoDesc": "Em Rio Claro, o mercado está dividido entre franquias tradicionais de massa que vendem cursos lentos de 5 anos (Wizard/CNA) e escolas regionais de intercâmbio. O espaço de alta performance para executivos que buscam velocidade (imersão em 3 meses) é exclusivo e pode ser dominado.",
+        "concorrentes": [
+            {
+                "nome": "D'Accord Idiomas",
+                "x": 40,
+                "y": 70,
+                "pos": "Concorrente premium na região"
+            },
+            {
+                "nome": "E.W.E School",
+                "x": 25,
+                "y": 55,
+                "pos": "Foco em intercâmbio na região"
+            },
+            {
+                "nome": "Wizard CNA Rio Claro",
+                "x": 15,
+                "y": 20,
+                "pos": "Franquias tradicionais focadas em escala"
+            }
+        ],
+        "auditoria": [
+            {
+                "data": "09/06/2026",
+                "formato": "Estático - Institucional",
+                "engajamento": "~10 / 0",
+                "percepção": "Informativo Frio / Franquia",
+                "status": "crítico"
+            },
+            {
+                "data": "05/06/2026",
+                "formato": "Reels - Bastidor/Cultura",
+                "engajamento": "~25 / 2",
+                "percepção": "Bom Potencial (Falta humana)",
+                "status": "ok"
+            },
+            {
+                "data": "29/05/2026",
+                "formato": "Estático - Institucional",
+                "engajamento": "~15 / 1",
+                "percepção": "Panfletagem de Dicas",
+                "status": "crítico"
+            },
+            {
+                "data": "14/05/2026",
+                "formato": "Estático - Posic./Autoridade",
+                "engajamento": "~8 / 0",
+                "percepção": "Falta de Engajamento Real",
+                "status": "crítico"
+            },
+            {
+                "data": "29/04/2026",
+                "formato": "Estático - Institucional",
+                "engajamento": "~12 / 1",
+                "percepção": "Ruído Burocrático",
+                "status": "crítico"
+            },
+            {
+                "data": "14/04/2026",
+                "formato": "Estático - Posic./Autoridade",
+                "engajamento": "~7 / 0",
+                "percepção": "Sem Autoridade Local",
+                "status": "crítico"
+            },
+            {
+                "data": "25/03/2026",
+                "formato": "Estático - Institucional",
+                "engajamento": "~9 / 0",
+                "percepção": "Informativo Frio",
+                "status": "crítico"
+            },
+            {
+                "data": "10/03/2026",
+                "formato": "Estático - Institucional",
+                "engajamento": "~11 / 1",
+                "percepção": "Panfletagem Digital",
+                "status": "crítico"
+            },
+            {
+                "data": "20/02/2026",
+                "formato": "Estático - Institucional",
+                "engajamento": "~6 / 0",
+                "percepção": "Frio e Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "15/01/2026",
+                "formato": "Estático - Posic./Autoridade",
+                "engajamento": "~14 / 2",
+                "percepção": "Bom Potencial Estático",
+                "status": "ok"
+            }
+        ]
+    },
+    "abaporueducacional": {
+        "nomeProspect": "Abaporu Educacional",
+        "nicho": "cursinho",
+        "cidade": "Rio Claro",
+        "instagram": "@abaporu.educacional",
+        "seguidores": "1.800",
+        "taxaEngajamento": "2,07%",
+        "ressalva": "Engajamento acima da média saudável. O público confia e interage com o Thomaz. A marca já possui uma \"alma\" clara e uma comunidade que se identifica com o discurso de autenticidade.",
+        "achadoMaisForte": "ativo",
+        "distribuicaoConteudo": [
+            {
+                "tipo": "Visão do Fundador / Autoridade",
+                "pct": 50,
+                "dominant": true
+            },
+            {
+                "tipo": "Bastidor / Cultura",
+                "pct": 30,
+                "dominant": false
+            },
+            {
+                "tipo": "Institucional",
+                "pct": 20,
+                "dominant": false
+            }
+        ],
+        "ativoDesperdicado": "Propriedade Intelectual (Coleção Autorretrato)",
+        "fraseAbertura": "Olhamos o cursinho de vocês e o mercado de Rio Claro. Existe uma <span class='destaque-laranja'>força extraordinária em seu ativo de Propriedade Intelectual (Coleção Autorretrato)</span> que já está aí dentro, mas que hoje acaba oculta por uma comunicação que usa uma nomenclatura que os nivela por baixo (\"cursinho\")",
+        "evidencia": [
+            "5 anos de história em Rio Claro.",
+            "Resultados reais: Médias 900+ no ENEM (2022-2025).",
+            "Diferencial técnico raro: <strong>Sistema de Ensino Próprio</strong> (Coleção Autorretrato), o que confere independência pedagógica total.",
+            "Foco em turmas reduzidas e atendimento humanizado.",
+            "Identidade visual inspirada no Modernismo Brasileiro (Abaporu), gerando diferenciação imediata no feed."
+        ],
+        "lacuna": {
+            "entrega": "Possuem uma identidade visual e pedagógica única (Elite Intelectual)",
+            "comunica": "Usam uma nomenclatura que os nivela por baixo (\"cursinho\")."
+        },
+        "categoriaAtual": "O cursinho mais autêntico de Rio Claro. Sistema de ensino próprio - Coleção Autorretrato.\" (bio).",
+        "prospectX": 35,
+        "prospectY": 25,
+        "diagnosisTitle": "",
+        "diagnosisDesc": "",
+        "diagnosisText": "",
+        "mercadoDesc": "Em Rio Claro, o mercado de cursinhos se divide entre franquias de massa e concorrentes tradicionais. O território de diferenciação premium e focado no seu ativo de maior valor está livre para a sua marca dominar.",
+        "concorrentes": [
+            {
+                "nome": "Anglo Rio Claro",
+                "x": 80,
+                "y": 20,
+                "pos": "Gigante tradicional que a Abaporu combate com o discurso de \"personalização vs massa\"."
+            },
+            {
+                "nome": "Purrfect Idiomas (Limeira/SP)",
+                "x": 40,
+                "y": 65,
+                "pos": "Embora seja de outra cidade e foco em idiomas, compartilha o perfil de \"marca autêntica/nicho\" na região."
+            },
+            {
+                "nome": "Cursinho Objetivo Rio Claro",
+                "x": 20,
+                "y": 40,
+                "pos": "Outro player de massa que serve de contraponto para a narrativa de \"autenticidade\" da Abaporu."
+            }
+        ],
+        "auditoria": [
+            {
+                "data": "Jun 16, 2026",
+                "formato": "Estático - Posicionamento/Autoridade",
+                "engajamento": "~20 / 1",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            },
+            {
+                "data": "Jun 10, 2026",
+                "formato": "Reel - Visão do Fundador",
+                "engajamento": "~45 / 4",
+                "percepção": "Humano e Técnico",
+                "status": "ok"
+            },
+            {
+                "data": "Jun 05, 2026",
+                "formato": "Reel - Bastidor/Cultura",
+                "engajamento": "~35 / 2",
+                "percepção": "Bom Potencial (Falta humana)",
+                "status": "ok"
+            },
+            {
+                "data": "Mai 22, 2026",
+                "formato": "Reel - Posicionamento/Autoridade",
+                "engajamento": "~55 / 6",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            },
+            {
+                "data": "Mai 18, 2026",
+                "formato": "Reel - Bastidor/Cultura",
+                "engajamento": "~70 / 10",
+                "percepção": "Bom Potencial (Falta humana)",
+                "status": "ok"
+            },
+            {
+                "data": "Abr 30, 2026",
+                "formato": "Reel - Institucional",
+                "engajamento": "~40 / 3",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Abr 15, 2026",
+                "formato": "Estático - Institucional",
+                "engajamento": "~30 / 2",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Mar 28, 2026",
+                "formato": "Reel - Posicionamento/Autoridade",
+                "engajamento": "~25 / 1",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            },
+            {
+                "data": "Mar 10, 2026",
+                "formato": "Reel - Bastidor/Cultura",
+                "engajamento": "~38 / 3",
+                "percepção": "Bom Potencial (Falta humana)",
+                "status": "ok"
+            },
+            {
+                "data": "Fev 20, 2026",
+                "formato": "Estático - Institucional",
+                "engajamento": "~15 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            }
+        ]
+    },
+    "assetingles": {
+        "nomeProspect": "Asset Inglês",
+        "nicho": "escola de idiomas",
+        "cidade": "Indaiatuba",
+        "instagram": "@inglesasset",
+        "seguidores": "1.478",
+        "taxaEngajamento": "0,67%",
+        "ressalva": "Engajamento baixo e estagnado. A marca não gera conversas, apenas comunica de forma unilateral. O visual é datado e as artes não prendem a atenção de um público adulto premium.",
+        "achadoMaisForte": "ativo",
+        "distribuicaoConteudo": [
+            {
+                "tipo": "Oferta/Matrícula",
+                "pct": 30,
+                "dominant": true
+            },
+            {
+                "tipo": "Institucional",
+                "pct": 30,
+                "dominant": false
+            },
+            {
+                "tipo": "Posicionamento/Autoridade",
+                "pct": 20,
+                "dominant": false
+            },
+            {
+                "tipo": "Bastidor/Cultura",
+                "pct": 20,
+                "dominant": false
+            }
+        ],
+        "ativoDesperdicado": "foco em Adultos e a técnica de Redução de Sotaque",
+        "fraseAbertura": "Olhamos o escola de idiomas de vocês e o mercado de Indaiatuba. Existe uma <span class='destaque-laranja'>força extraordinária em seu ativo de foco em Adultos e a técnica de Redução de Sotaque</span> que já está aí dentro, mas que hoje acaba oculta por uma comunicação que se apresenta como um curso de inglês comum focado em \"matrículas abertas\"",
+        "evidencia": [],
+        "lacuna": {
+            "entrega": "Um treinamento exclusivo para executivos e adultos (high ticket potencial)",
+            "comunica": "Se apresenta como um curso de inglês comum focado em \"matrículas abertas\"."
+        },
+        "categoriaAtual": "Asset – Inglês Online e Presencial – Inglês Direto ao Ponto. Escola especializada no ensino rápido para jovens e adultos\" (hero).",
+        "prospectX": 25,
+        "prospectY": 35,
+        "diagnosisTitle": "",
+        "diagnosisDesc": "",
+        "diagnosisText": "",
+        "mercadoDesc": "Em Indaiatuba, o mercado de escolas de idiomas se divide entre franquias de massa e concorrentes tradicionais. O território de diferenciação premium e focado no seu ativo de maior valor está livre para a sua marca dominar.",
+        "concorrentes": [
+            {
+                "nome": "BC English School",
+                "x": 80,
+                "y": 20,
+                "pos": "Também foca em inglês rápido (2 anos) e método diferenciado, mas com comunicação muito mais moderna."
+            },
+            {
+                "nome": "Why Not Institute",
+                "x": 40,
+                "y": 65,
+                "pos": "Briga no nicho de inglês desburocratizado e online."
+            },
+            {
+                "nome": "Wizard/CNA Indaiatuba",
+                "x": 20,
+                "y": 40,
+                "pos": "Concorrentes de massa que a Asset tenta se diferenciar pelo foco em adultos e \"direto ao ponto\"."
+            }
+        ],
+        "auditoria": [
+            {
+                "data": "Abr 17, 2026",
+                "formato": "Estático - Institucional (19 anos)",
+                "engajamento": "12 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Mar 15, 2026",
+                "formato": "Reel - Posicionamento/Autoridade",
+                "engajamento": "~10 / 0",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            },
+            {
+                "data": "Fev 10, 2026",
+                "formato": "Estático - Oferta/Matrícula",
+                "engajamento": "~8 / 0",
+                "percepção": "Oferta sem Conexão / Panfletagem",
+                "status": "crítico"
+            },
+            {
+                "data": "Jan 20, 2026",
+                "formato": "Estático - Bastidor/Cultura",
+                "engajamento": "15 / 1",
+                "percepção": "Bom Potencial (Falta humana)",
+                "status": "ok"
+            },
+            {
+                "data": "Dez 10, 2025",
+                "formato": "Reel - Oferta/Matrícula",
+                "engajamento": "~10 / 0",
+                "percepção": "Oferta sem Conexão / Panfletagem",
+                "status": "crítico"
+            },
+            {
+                "data": "Nov 04, 2025",
+                "formato": "Estático - Institucional",
+                "engajamento": "~10 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Out 15, 2025",
+                "formato": "Estático - Posicionamento/Autoridade",
+                "engajamento": "~8 / 0",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            },
+            {
+                "data": "Set 05, 2025",
+                "formato": "Estático - Bastidor/Cultura",
+                "engajamento": "12 / 2",
+                "percepção": "Bom Potencial (Falta humana)",
+                "status": "ok"
+            },
+            {
+                "data": "Ago 12, 2025",
+                "formato": "Reel - Institucional",
+                "engajamento": "~10 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Jul 01, 2025",
+                "formato": "Estático - Oferta/Matrícula",
+                "engajamento": "~8 / 0",
+                "percepção": "Oferta sem Conexão / Panfletagem",
+                "status": "crítico"
+            }
+        ]
+    },
+    "blackwhiteschool": {
+        "nomeProspect": "Black White School",
+        "nicho": "escola de idiomas",
+        "cidade": "Indaiatuba",
+        "instagram": "@blackwhiteschool",
+        "seguidores": "3.320",
+        "taxaEngajamento": "0,80%",
+        "ressalva": "Engajamento baixo para o porte da escola (+4k alunos). O conteúdo \"fura a bolha\" apenas quando mostra experiências reais (Hopi Hari, eventos), chegando a 92 curtidas. As artes estáticas de design são ignoradas pela audiência.",
+        "achadoMaisForte": "ativo",
+        "distribuicaoConteudo": [
+            {
+                "tipo": "Institucional",
+                "pct": 30,
+                "dominant": true
+            },
+            {
+                "tipo": "Trend/Interação",
+                "pct": 30,
+                "dominant": false
+            },
+            {
+                "tipo": "Posicionamento/Autoridade",
+                "pct": 20,
+                "dominant": false
+            },
+            {
+                "tipo": "Bastidor/Cultura",
+                "pct": 10,
+                "dominant": false
+            },
+            {
+                "tipo": "Oferta/Matrícula",
+                "pct": 10,
+                "dominant": false
+            }
+        ],
+        "ativoDesperdicado": "Infraestrutura de Experiência (Cinema e Game Room) e a Gamificação (BW Money)",
+        "fraseAbertura": "Olhamos o escola de idiomas de vocês e o mercado de Indaiatuba. Existe uma <span class='destaque-laranja'>força extraordinária em seu ativo de Infraestrutura de Experiência (Cinema e Game Room) e a Gamificação (BW Money)</span> que já está aí dentro, mas que hoje acaba oculta por uma comunicação que se apresenta como uma escola de idiomas comum que faz \"posts de feriado\"",
+        "evidencia": [],
+        "lacuna": {
+            "entrega": "Uma experiência imersiva e tecnológica (Cinema/Games/BW Money)",
+            "comunica": "Se apresenta como uma escola de idiomas comum que faz \"posts de feriado\"."
+        },
+        "categoriaAtual": "Escola de Idiomas - Black White School: linguagem que transforma. +4mil alunos em Indaiatuba\" (hero).",
+        "prospectX": 25,
+        "prospectY": 35,
+        "diagnosisTitle": "",
+        "diagnosisDesc": "",
+        "diagnosisText": "",
+        "mercadoDesc": "Em Indaiatuba, o mercado de escolas de idiomas se divide entre franquias de massa e concorrentes tradicionais. O território de diferenciação premium e focado no seu ativo de maior valor está livre para a sua marca dominar.",
+        "concorrentes": [
+            {
+                "nome": "BC English School",
+                "x": 80,
+                "y": 20,
+                "pos": "Concorrente local que também foca em método rápido, mas com comunidade digital muito mais vibrante."
+            },
+            {
+                "nome": "Asset Inglês",
+                "x": 40,
+                "y": 65,
+                "pos": "Foco em adultos e tradição (19 anos)."
+            },
+            {
+                "nome": "Wizard Indaiatuba",
+                "x": 20,
+                "y": 40,
+                "pos": "A franquia \"padrão\" contra a qual a Black White se posiciona como \"experiência diferenciada\"."
+            }
+        ],
+        "auditoria": [
+            {
+                "data": "Jun 11, 2026",
+                "formato": "Estático - Posicionamento/Autoridade",
+                "engajamento": "5 / 1",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            },
+            {
+                "data": "Mai 28, 2026",
+                "formato": "Reel - Institucional (Experiência)",
+                "engajamento": "92 / 9",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Mai 26, 2026",
+                "formato": "Estático - Trend/Interação",
+                "engajamento": "10 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Mai 06, 2026",
+                "formato": "Reel - Trend/Interação",
+                "engajamento": "~15 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Abr 14, 2026",
+                "formato": "Reel - Posicionamento/Autoridade",
+                "engajamento": "~20 / 2",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            },
+            {
+                "data": "Jan 07, 2025",
+                "formato": "Estático - Oferta/Matrícula",
+                "engajamento": "24 / 0",
+                "percepção": "Oferta sem Conexão / Panfletagem",
+                "status": "crítico"
+            },
+            {
+                "data": "Out 30, 2025",
+                "formato": "Estático - Trend/Interação",
+                "engajamento": "14 / 2",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Out 17, 2025",
+                "formato": "Estático - Institucional",
+                "engajamento": "8 / 1",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Ago 08, 2025",
+                "formato": "Reel - Bastidor/Cultura (Hopi Hari)",
+                "engajamento": "63 / 9",
+                "percepção": "Bom Potencial (Falta humana)",
+                "status": "ok"
+            },
+            {
+                "data": "Jul 15, 2025",
+                "formato": "Reel - Institucional",
+                "engajamento": "~15 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            }
+        ]
+    },
+    "cursogalileo": {
+        "nomeProspect": "Curso Galileo",
+        "nicho": "cursinho",
+        "cidade": "Limeira",
+        "instagram": "@cursogalileo",
+        "seguidores": "4.237",
+        "taxaEngajamento": "1,20%",
+        "ressalva": "Engajamento saudável e real. O pico de interação ocorre na \"Hamburgada Galileo\" e em aprovações de Medicina, mostrando que a comunidade valoriza o resultado e a cultura da escola.",
+        "achadoMaisForte": "ativo",
+        "distribuicaoConteudo": [
+            {
+                "tipo": "Institucional (Aprovados)",
+                "pct": 60,
+                "dominant": true
+            },
+            {
+                "tipo": "Oferta/Matrícula",
+                "pct": 20,
+                "dominant": false
+            },
+            {
+                "tipo": "Trend/Interação",
+                "pct": 20,
+                "dominant": false
+            }
+        ],
+        "ativoDesperdicado": "SAP (Apoio Psicológico) e a Cultura de Comunidade (Hamburgada)",
+        "fraseAbertura": "Olhamos o cursinho de vocês e o mercado de Limeira. Existe uma <span class='destaque-laranja'>força extraordinária em seu ativo de SAP (Apoio Psicológico) e a Cultura de Comunidade (Hamburgada)</span> que já está aí dentro, mas que hoje acaba oculta por uma comunicação que se apresenta como um cursinho tradicional focado apenas em listas de nomes e provas de bolsa",
+        "evidencia": [],
+        "lacuna": {
+            "entrega": "Uma das maiores taxas de aprovação do estado com suporte emocional real (SAP)",
+            "comunica": "Se apresenta como um cursinho tradicional focado apenas em listas de nomes e provas de bolsa."
+        },
+        "categoriaAtual": "O Curso com Maior Taxa de Aprovação da Cidade! Galileo Anglo Vestibulares - Taxa acima de 94%.\" (hero).",
+        "prospectX": 35,
+        "prospectY": 25,
+        "diagnosisTitle": "",
+        "diagnosisDesc": "",
+        "diagnosisText": "",
+        "mercadoDesc": "Em Limeira, o mercado de cursinhos se divide entre franquias de massa e concorrentes tradicionais. O território de diferenciação premium e focado no seu ativo de maior valor está livre para a sua marca dominar.",
+        "concorrentes": [
+            {
+                "nome": "Poliedro Limeira",
+                "x": 80,
+                "y": 20,
+                "pos": "Concorrente direto em alto desempenho e aprovações em Medicina."
+            },
+            {
+                "nome": "Cursinho Objetivo Limeira",
+                "x": 40,
+                "y": 65,
+                "pos": "Franquia tradicional com grande volume de alunos."
+            },
+            {
+                "nome": "Elite Limeira",
+                "x": 20,
+                "y": 40,
+                "pos": "Foco em vestibulares militares e alta performance."
+            }
+        ],
+        "auditoria": [
+            {
+                "data": "Abr 23, 2026",
+                "formato": "Estático - Oferta/Matrícula",
+                "engajamento": "~20 / 0",
+                "percepção": "Oferta sem Conexão / Panfletagem",
+                "status": "crítico"
+            },
+            {
+                "data": "Abr 15, 2026",
+                "formato": "Estático - Institucional (Aprovados)",
+                "engajamento": "~50 / 2",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Mar 28, 2026",
+                "formato": "Estático - Trend/Interação (Hamburgada)",
+                "engajamento": "~80 / 15",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Mar 08, 2026",
+                "formato": "Estático - Institucional",
+                "engajamento": "~30 / 1",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Fev 15, 2026",
+                "formato": "Estático - Institucional (Medicina)",
+                "engajamento": "~100 / 5",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Fev 10, 2026",
+                "formato": "Estático - Institucional (Unicamp)",
+                "engajamento": "~70 / 3",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Jan 20, 2026",
+                "formato": "Estático - Oferta/Matrícula",
+                "engajamento": "~25 / 0",
+                "percepção": "Oferta sem Conexão / Panfletagem",
+                "status": "crítico"
+            },
+            {
+                "data": "Dez 15, 2025",
+                "formato": "Estático - Institucional",
+                "engajamento": "~60 / 2",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Nov 20, 2025",
+                "formato": "Estático - Institucional",
+                "engajamento": "~40 / 1",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Out 31, 2025",
+                "formato": "Estático - Trend/Interação",
+                "engajamento": "~35 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            }
+        ]
+    },
+    "daccordidiomas": {
+        "nomeProspect": "D'Accord Idiomas",
+        "nicho": "escola de idiomas",
+        "cidade": "Piracicaba",
+        "instagram": "@idiomasdaccord",
+        "seguidores": "909",
+        "taxaEngajamento": "1,72%",
+        "ressalva": "Engajamento saudável e orgânico. O público reage melhor quando vê a aplicação prática do idioma ou depoimentos reais de quem \"chegou lá\".",
+        "achadoMaisForte": "ativo",
+        "distribuicaoConteudo": [
+            {
+                "tipo": "Institucional",
+                "pct": 50,
+                "dominant": true
+            },
+            {
+                "tipo": "Posicionamento/Autoridade",
+                "pct": 40,
+                "dominant": false
+            },
+            {
+                "tipo": "Bastidor/Cultura",
+                "pct": 10,
+                "dominant": false
+            }
+        ],
+        "ativoDesperdicado": "Especialização em \"Português para Estrangeiros\" e \"Exames de Elite\"",
+        "fraseAbertura": "Olhamos o escola de idiomas de vocês e o mercado de Piracicaba. Existe uma <span class='destaque-laranja'>força extraordinária em seu ativo de Especialização em \"Português para Estrangeiros\" e \"Exames de Elite\"</span> que já está aí dentro, mas que hoje acaba oculta por uma comunicação que se apresenta como uma escola de idiomas amigável e acessível (genérica)",
+        "evidencia": [
+            "+1000 alunos formados.",
+            "Alunos presentes em 10+ países (França, Canadá, Luxemburgo, etc.).",
+            "Especialista em exames de proficiência (DELF, TCF, TEF, Celpe-Bras).",
+            "Nicho Premium: Português para Estrangeiros (foco em expatriados em Piracicaba).",
+            "Turmas reduzidas (máximo 5 alunos) para atendimento personalizado.",
+            "Área do aluno com tecnologia para acompanhamento de progresso."
+        ],
+        "lacuna": {
+            "entrega": "Um resultado técnico de altíssimo nível (exames internacionais)",
+            "comunica": "Se apresenta como uma escola de idiomas amigável e acessível (genérica)."
+        },
+        "categoriaAtual": "D’Accord Idiomas: Fale com naturalidade e segurança. Metodologia exclusiva CS – 100% Aprovação em exames de proficiência.\" (hero).",
+        "prospectX": 25,
+        "prospectY": 35,
+        "diagnosisTitle": "",
+        "diagnosisDesc": "",
+        "diagnosisText": "",
+        "mercadoDesc": "Em Piracicaba, o mercado de escolas de idiomas se divide entre franquias de massa e concorrentes tradicionais. O território de diferenciação premium e focado no seu ativo de maior valor está livre para a sua marca dominar.",
+        "concorrentes": [
+            {
+                "nome": "E.W.E School",
+                "x": 80,
+                "y": 20,
+                "pos": "Concorrente direta em Piracicaba com foco em intercâmbio."
+            },
+            {
+                "nome": "The House Piracicaba",
+                "x": 40,
+                "y": 65,
+                "pos": "Escola com posicionamento premium na cidade."
+            },
+            {
+                "nome": "Aliança Francesa",
+                "x": 20,
+                "y": 40,
+                "pos": "Concorrente direta no nicho de francês, que a D'Accord combate com a personalização e a metodologia da Carol."
+            }
+        ],
+        "auditoria": [
+            {
+                "data": "Jun 10, 2026",
+                "formato": "Estático - Institucional",
+                "engajamento": "~15 / 1",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Jun 02, 2026",
+                "formato": "Estático - Posicionamento/Autoridade",
+                "engajamento": "~12 / 0",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            },
+            {
+                "data": "Mai 25, 2026",
+                "formato": "Reel - Bastidor/Cultura",
+                "engajamento": "~30 / 3",
+                "percepção": "Bom Potencial (Falta humana)",
+                "status": "ok"
+            },
+            {
+                "data": "Mai 18, 2026",
+                "formato": "Estático - Institucional (Depoimento)",
+                "engajamento": "~18 / 2",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Mai 10, 2026",
+                "formato": "Estático - Posicionamento/Autoridade",
+                "engajamento": "~10 / 0",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            },
+            {
+                "data": "Mai 02, 2026",
+                "formato": "Estático - Institucional",
+                "engajamento": "~14 / 1",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Abr 20, 2026",
+                "formato": "Reel - Posicionamento/Autoridade",
+                "engajamento": "~25 / 2",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            },
+            {
+                "data": "Abr 12, 2026",
+                "formato": "Estático - Institucional",
+                "engajamento": "~11 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Abr 05, 2026",
+                "formato": "Estático - Posicionamento/Autoridade",
+                "engajamento": "~9 / 0",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            },
+            {
+                "data": "Mar 28, 2026",
+                "formato": "Estático - Institucional",
+                "engajamento": "~13 / 1",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            }
+        ]
+    },
+    "eweschool": {
+        "nomeProspect": "E.W.E School",
+        "nicho": "escola de idiomas",
+        "cidade": "Piracicaba",
+        "instagram": "@e.w.e.school",
+        "seguidores": "1.253",
+        "taxaEngajamento": "1,03%",
+        "ressalva": "Engajamento no limite inferior da saúde. O conteúdo de \"dicas de séries\" e \"curiosidades\" gera pouca conexão real. O pico de engajamento ocorre em vídeos de alunos (Reels), mostrando que a comunidade quer ver pessoas, não artes do Canva.",
+        "achadoMaisForte": "ativo",
+        "distribuicaoConteudo": [
+            {
+                "tipo": "Posicionamento/Autoridade (Dicas/Cultura)",
+                "pct": 70,
+                "dominant": true
+            },
+            {
+                "tipo": "Institucional (Vagas/Eventos)",
+                "pct": 20,
+                "dominant": false
+            },
+            {
+                "tipo": "Bastidor/Cultura (Alunos)",
+                "pct": 10,
+                "dominant": false
+            }
+        ],
+        "ativoDesperdicado": "Conexão Idioma + Intercâmbio Real",
+        "fraseAbertura": "Olhamos o escola de idiomas de vocês e o mercado de Piracicaba. Existe uma <span class='destaque-laranja'>força extraordinária em seu ativo de Conexão Idioma + Intercâmbio Real</span> que já está aí dentro, mas que hoje acaba oculta por uma comunicação que se apresenta como uma escola de idiomas genérica com artes de \"dicas de inglês\"",
+        "evidencia": [
+            "10 a 20 anos de mercado em Piracicaba (inconsistência entre bio e site).",
+            "Sócia da IE Intercâmbio Piracicaba (diferencial competitivo brutal).",
+            "Oferece Reforço Escolar em diversas matérias (Matemática, Física, etc.).",
+            "Modalidades: Particular, Dupla ou Grupos de até 6 pessoas.",
+            "Foco em Inglês para Negócios e Cultural."
+        ],
+        "lacuna": {
+            "entrega": "Um ecossistema completo (Ensino + Intercâmbio)",
+            "comunica": "Se apresenta como uma escola de idiomas genérica com artes de \"dicas de inglês\"."
+        },
+        "categoriaAtual": "A E.W.E. SCHOOL é a melhor escola de idiomas de Piracicaba. Foco em aulas de inglês e espanhol personalizadas e intercâmbio.\" (Sobre). Nota: O site é visualmente pobre e não sustenta a afirmação de \"melhor escola\".",
+        "prospectX": 25,
+        "prospectY": 35,
+        "diagnosisTitle": "",
+        "diagnosisDesc": "",
+        "diagnosisText": "",
+        "mercadoDesc": "Em Piracicaba, o mercado de escolas de idiomas se divide entre franquias de massa e concorrentes tradicionais. O território de diferenciação premium e focado no seu ativo de maior valor está livre para a sua marca dominar.",
+        "concorrentes": [
+            {
+                "nome": "D'Accord Idiomas",
+                "x": 80,
+                "y": 20,
+                "pos": "Concorrente direta em Piracicaba."
+            },
+            {
+                "nome": "The House Piracicaba",
+                "x": 40,
+                "y": 65,
+                "pos": "Escola de idiomas com pegada premium na cidade."
+            },
+            {
+                "nome": "CNA / Wizard Piracicaba",
+                "x": 20,
+                "y": 40,
+                "pos": "Franquias que a E.W.E tenta combater com a personalização e o intercâmbio."
+            }
+        ],
+        "auditoria": [
+            {
+                "data": "Jun 15, 2026",
+                "formato": "Estático - Institucional",
+                "engajamento": "~12 / 2",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Jun 10, 2026",
+                "formato": "Estático - Posicionamento/Autoridade",
+                "engajamento": "~8 / 0",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            },
+            {
+                "data": "Jun 05, 2026",
+                "formato": "Estático - Institucional",
+                "engajamento": "~10 / 1",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Mai 29, 2026",
+                "formato": "Reel - Bastidor/Cultura",
+                "engajamento": "~25 / 4",
+                "percepção": "Bom Potencial (Falta humana)",
+                "status": "ok"
+            },
+            {
+                "data": "Mai 20, 2026",
+                "formato": "Estático - Posicionamento/Autoridade",
+                "engajamento": "~12 / 1",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            },
+            {
+                "data": "Mai 15, 2026",
+                "formato": "Estático - Posicionamento/Autoridade",
+                "engajamento": "~7 / 0",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            },
+            {
+                "data": "Mai 12, 2026",
+                "formato": "Estático - Posicionamento/Autoridade",
+                "engajamento": "~9 / 0",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            },
+            {
+                "data": "Mai 08, 2026",
+                "formato": "Estático - Posicionamento/Autoridade",
+                "engajamento": "~15 / 2",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            },
+            {
+                "data": "Mai 01, 2026",
+                "formato": "Estático - Institucional",
+                "engajamento": "~18 / 3",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Abr 25, 2026",
+                "formato": "Estático - Posicionamento/Autoridade",
+                "engajamento": "~14 / 2",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            }
+        ]
+    },
+    "englishyou": {
+        "nomeProspect": "English You",
+        "nicho": "escola de idiomas",
+        "cidade": "Limeira",
+        "instagram": "@englishyoulimeira",
+        "seguidores": "1.845",
+        "taxaEngajamento": "1,47%",
+        "ressalva": "Engajamento saudável e orgânico. A marca tem uma base fiel que celebra as conquistas dos alunos e acompanha o Ricardo. O visual, porém, é amador e não reflete o porte de uma empresa com 12 anos e 3 unidades.",
+        "achadoMaisForte": "ativo",
+        "distribuicaoConteudo": [
+            {
+                "tipo": "Institucional",
+                "pct": 40,
+                "dominant": true
+            },
+            {
+                "tipo": "Bastidor/Cultura",
+                "pct": 30,
+                "dominant": false
+            },
+            {
+                "tipo": "Posicionamento/Autoridade",
+                "pct": 20,
+                "dominant": false
+            },
+            {
+                "tipo": "Oferta/Matrícula",
+                "pct": 10,
+                "dominant": false
+            }
+        ],
+        "ativoDesperdicado": "TCC (Trabalho de Conclusão de Curso) e a Autoridade do Ricardo Augusto",
+        "fraseAbertura": "Olhamos o escola de idiomas de vocês e o mercado de Limeira. Existe uma <span class='destaque-laranja'>força extraordinária em seu ativo de TCC (Trabalho de Conclusão de Curso) e a Autoridade do Ricardo Augusto</span> que já está aí dentro, mas que hoje acaba oculta por uma comunicação que apresenta com uma identidade visual de \"escola de idiomas de bairro\" de 2013",
+        "evidencia": [],
+        "lacuna": {
+            "entrega": "Uma formação completa com intercâmbio e defesa de tese (high ticket/elite)",
+            "comunica": "Apresenta com uma identidade visual de \"escola de idiomas de bairro\" de 2013."
+        },
+        "categoriaAtual": "Inglês e Espanhol! Presencial, EAD e Híbrido! 12+ anos no mercado. 4.000+ alunos se comunicando com segurança.\" (hero).",
+        "prospectX": 25,
+        "prospectY": 35,
+        "diagnosisTitle": "",
+        "diagnosisDesc": "",
+        "diagnosisText": "",
+        "mercadoDesc": "Em Limeira, o mercado de escolas de idiomas se divide entre franquias de massa e concorrentes tradicionais. O território de diferenciação premium e focado no seu ativo de maior valor está livre para a sua marca dominar.",
+        "concorrentes": [
+            {
+                "nome": "Purrfect Idiomas",
+                "x": 80,
+                "y": 20,
+                "pos": "Concorrente em Limeira com foco em cultura geek e autoridade da Erika Jay."
+            },
+            {
+                "nome": "Curso Galileo",
+                "x": 40,
+                "y": 65,
+                "pos": "Autoridade local em cursinhos e idiomas."
+            },
+            {
+                "nome": "Wizard/CNA Limeira",
+                "x": 20,
+                "y": 40,
+                "pos": "Franquias que a English You combate com o discurso de \"não somos franquia, somos um projeto diferenciado\"."
+            }
+        ],
+        "auditoria": [
+            {
+                "data": "Jun 11, 2026",
+                "formato": "Reel - Institucional (Parceria)",
+                "engajamento": "~30 / 2",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Jun 01, 2026",
+                "formato": "Estático - Bastidor/Cultura",
+                "engajamento": "~25 / 1",
+                "percepção": "Bom Potencial (Falta humana)",
+                "status": "ok"
+            },
+            {
+                "data": "Mai 07, 2026",
+                "formato": "Estático - Institucional (Formandos)",
+                "engajamento": "~40 / 5",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Mai 05, 2026",
+                "formato": "Reel - Bastidor/Cultura",
+                "engajamento": "~15 / 0",
+                "percepção": "Bom Potencial (Falta humana)",
+                "status": "ok"
+            },
+            {
+                "data": "Abr 20, 2026",
+                "formato": "Reel - Institucional",
+                "engajamento": "~25 / 2",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Fev 19, 2025",
+                "formato": "Estático - Posicionamento/Autoridade",
+                "engajamento": "~12 / 0",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            },
+            {
+                "data": "Dez 15, 2024",
+                "formato": "Reel - Institucional (Formatura)",
+                "engajamento": "~50 / 8",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Out 06, 2024",
+                "formato": "Reel - Posicionamento/Autoridade",
+                "engajamento": "~20 / 1",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            },
+            {
+                "data": "Set 10, 2024",
+                "formato": "Reel - Institucional (Intercâmbio)",
+                "engajamento": "~35 / 3",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Ago 26, 2024",
+                "formato": "Reel - Posicionamento/Autoridade",
+                "engajamento": "~20 / 1",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            }
+        ]
+    },
+    "exatoassessoriaestudantil": {
+        "nomeProspect": "Exato Assessoria Estudantil",
+        "nicho": "cursinho",
+        "cidade": "Mogi Guaçu",
+        "instagram": "@exatoassessoria",
+        "seguidores": "384",
+        "taxaEngajamento": "0,80%",
+        "ressalva": "Engajamento irrelevante. A marca \"fala sozinha\" no digital. O conteúdo é mecânico e repetitivo, servindo apenas como canal de comunicação direta para quem já é aluno, sem nenhuma força de atração ou branding.",
+        "achadoMaisForte": "engajamento",
+        "distribuicaoConteudo": [
+            {
+                "tipo": "Institucional (Avisos/Boas aulas)",
+                "pct": 90,
+                "dominant": true
+            },
+            {
+                "tipo": "Trend/Interação",
+                "pct": 10,
+                "dominant": false
+            }
+        ],
+        "ativoDesperdicado": "conceito de \"Assessoria Estudantil\"",
+        "fraseAbertura": "Olhamos o cursinho de vocês e o mercado de Mogi Guaçu. Existe uma <span class='destaque-laranja'>força extraordinária em seu ativo de conceito de \"Assessoria Estudantil\"</span> que já está aí dentro, mas que hoje acaba oculta por uma comunicação que se apresenta como um repositório de avisos e datas (genérico)",
+        "evidencia": [
+            "Foco em aprofundamento para vestibulares de alta concorrência.",
+            "Aulas temáticas com professores especialistas.",
+            "Localização central em Mogi Guaçu/SP.",
+            "Longo histórico de posts (550+), indicando persistência na operação, apesar da falha na comunicação."
+        ],
+        "lacuna": {
+            "entrega": "Um serviço de aprofundamento e assessoria (especializado)",
+            "comunica": "Se apresenta como um repositório de avisos e datas (genérico)."
+        },
+        "categoriaAtual": "Assessoria Estudantil: Aulas temáticas com exercícios selecionados e professores altamente qualificados!\" (Facebook). Nota: Não possui site próprio, operando via redes sociais e contato direto.",
+        "prospectX": 35,
+        "prospectY": 25,
+        "diagnosisTitle": "",
+        "diagnosisDesc": "Engajamento Morto / Conteúdo de Panfletagem**.",
+        "diagnosisText": "Engajamento Morto / Conteúdo de Panfletagem**. A isca deve focar no \"Invisibilidade da Elite\". Como uma assessoria que prepara para os vestibulares mais difíceis pode ter uma vitrine tão pobre? A Exato tem o \"cérebro\" (os professores e o método), mas não tem a \"voz\". A oportunidade é transformar a marca em uma verdadeira **Boutique de Aprovação**, humanizando os professores e explorando o termo \"Assessoria\" para cobrar mais caro e atrair alunos de elite.",
+        "mercadoDesc": "Em Mogi Guaçu, o mercado de cursinhos se divide entre franquias de massa e concorrentes tradicionais. O território de diferenciação premium e focado no seu ativo de maior valor está livre para a sua marca dominar.",
+        "concorrentes": [
+            {
+                "nome": "Curso Galileo",
+                "x": 80,
+                "y": 20,
+                "pos": "Concorrente de elite na região (Limeira/Mogi)."
+            },
+            {
+                "nome": "Poliedro Mogi Guaçu",
+                "x": 40,
+                "y": 65,
+                "pos": "Franquia de alto desempenho que a Exato tenta combater com o discurso de \"Assessoria Personalizada\"."
+            },
+            {
+                "nome": "Elite Mogi Guaçu",
+                "x": 20,
+                "y": 40,
+                "pos": "Foco em vestibulares militares e alta performance."
+            }
+        ],
+        "auditoria": [
+            {
+                "data": "Jun 15, 2026",
+                "formato": "Estático - Institucional (Avisos)",
+                "engajamento": "~2 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Jun 03, 2026",
+                "formato": "Reel - Institucional (ENEM)",
+                "engajamento": "~5 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Mai 25, 2026",
+                "formato": "Estático - Institucional",
+                "engajamento": "~8 / 1",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Mai 15, 2026",
+                "formato": "Estático - Institucional",
+                "engajamento": "~1 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Mai 12, 2026",
+                "formato": "Estático - Institucional",
+                "engajamento": "~3 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Mai 01, 2026",
+                "formato": "Estático - Institucional",
+                "engajamento": "~2 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Abr 20, 2026",
+                "formato": "Estático - Institucional",
+                "engajamento": "~1 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Mar 24, 2026",
+                "formato": "Reel - Institucional",
+                "engajamento": "~4 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Mar 10, 2026",
+                "formato": "Estático - Institucional",
+                "engajamento": "~2 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Fev 15, 2026",
+                "formato": "Estático - Institucional",
+                "engajamento": "~3 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            }
+        ]
+    },
+    "flexuspalavrizar": {
+        "nomeProspect": "Flexus Palavrizar",
+        "nicho": "cursinho",
+        "cidade": "Rio Claro",
+        "instagram": "@flexuspalavrizar",
+        "seguidores": "600",
+        "taxaEngajamento": "1,53%",
+        "ressalva": "Engajamento sustentado por posts de aprovação (ego-marketing que atrai amigos e familiares). O conteúdo de valor ou venda direta tem engajamento quase nulo.",
+        "achadoMaisForte": "ativo",
+        "distribuicaoConteudo": [
+            {
+                "tipo": "Institucional (Avisos/Vagas)",
+                "pct": 60,
+                "dominant": true
+            },
+            {
+                "tipo": "Posicionamento/Autoridade (Aprovados)",
+                "pct": 40,
+                "dominant": false
+            },
+            {
+                "tipo": "Bastidor / Cultura",
+                "pct": 0,
+                "dominant": false
+            }
+        ],
+        "ativoDesperdicado": "Autoridade dos Fundadores \"Celebridades\"",
+        "fraseAbertura": "Olhamos o cursinho de vocês e o mercado de Rio Claro. Existe uma <span class='destaque-laranja'>força extraordinária em seu ativo de Autoridade dos Fundadores \"Celebridades\"</span> que já está aí dentro, mas que hoje acaba oculta por uma comunicação que se apresenta como uma \"filial de avisos\" sem alma e sem rosto em Rio Claro",
+        "evidencia": [
+            "Localizados no Office Tower (ponto nobre de Rio Claro).",
+            "Metodologia de São Carlos (referência estadual em aprovação de Medicina).",
+            "Especialização extrema: Foco em Redação/Linguagens e Exatas.",
+            "Turmas específicas para cada idade e momento de vida (Base, 2º EM, 3º EM, Pré-vestibular).",
+            "Conexão societária/gestão provável com a Abaporu Educacional (mesmos diretores citados)."
+        ],
+        "lacuna": {
+            "entrega": "Uma metodologia de elite (Referência de São Carlos)",
+            "comunica": "Se apresenta como uma \"filial de avisos\" sem alma e sem rosto em Rio Claro."
+        },
+        "categoriaAtual": "Agora em Rio Claro os renomados cursos Palavrizar (redação) e Flexus (exatas).\" (bio).",
+        "prospectX": 35,
+        "prospectY": 25,
+        "diagnosisTitle": "",
+        "diagnosisDesc": "",
+        "diagnosisText": "",
+        "mercadoDesc": "Em Rio Claro, o mercado de cursinhos se divide entre franquias de massa e concorrentes tradicionais. O território de diferenciação premium e focado no seu ativo de maior valor está livre para a sua marca dominar.",
+        "concorrentes": [
+            {
+                "nome": "Abaporu Educacional",
+                "x": 80,
+                "y": 20,
+                "pos": "\"Irmã\" de gestão, mas concorrente direta no nicho de cursinhos autênticos em Rio Claro."
+            },
+            {
+                "nome": "Anglo Rio Claro",
+                "x": 40,
+                "y": 65,
+                "pos": "Concorrente de massa que eles combatem com a hiper-especialização em matérias específicas."
+            },
+            {
+                "nome": "Curso Galileo (Limeira/SP)",
+                "x": 20,
+                "y": 40,
+                "pos": "Player regional forte no sistema Anglo, mas com pegada de cursinho geral."
+            }
+        ],
+        "auditoria": [
+            {
+                "data": "Jun 10, 2026",
+                "formato": "Estático - Institucional",
+                "engajamento": "~8 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Mai 25, 2026",
+                "formato": "Estático - Posicionamento/Autoridade",
+                "engajamento": "~12 / 1",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            },
+            {
+                "data": "Mai 15, 2026",
+                "formato": "Estático - Posicionamento/Autoridade",
+                "engajamento": "~15 / 2",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            },
+            {
+                "data": "Abr 30, 2026",
+                "formato": "Estático - Institucional",
+                "engajamento": "~6 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Abr 10, 2026",
+                "formato": "Estático - Institucional",
+                "engajamento": "~5 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Mar 20, 2026",
+                "formato": "Estático - Posicionamento/Autoridade",
+                "engajamento": "~10 / 1",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            },
+            {
+                "data": "Mar 05, 2026",
+                "formato": "Estático - Institucional",
+                "engajamento": "~4 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Fev 15, 2026",
+                "formato": "Estático - Institucional",
+                "engajamento": "~7 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Jan 22, 2026",
+                "formato": "Estático - Posicionamento/Autoridade",
+                "engajamento": "~20 / 3",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            },
+            {
+                "data": "Jan 10, 2026",
+                "formato": "Estático - Institucional",
+                "engajamento": "~5 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            }
+        ]
+    },
+    "getfluentenglishcenter": {
+        "nomeProspect": "Get Fluent English Center",
+        "nicho": "escola de idiomas",
+        "cidade": "Limeira",
+        "instagram": "@getfluent.english",
+        "seguidores": "6.059",
+        "taxaEngajamento": "0,25%",
+        "ressalva": "Engajamento nulo. Ter 6 mil seguidores e posts com apenas 1 curtida indica uma audiência completamente desengajada ou \"fantasma\". O Johnny está produzindo conteúdo de dicas que ninguém consome, enquanto a marca perde força.",
+        "achadoMaisForte": "engajamento",
+        "distribuicaoConteudo": [
+            {
+                "tipo": "Posicionamento/Autoridade (Dicas)",
+                "pct": 70,
+                "dominant": true
+            },
+            {
+                "tipo": "Institucional",
+                "pct": 20,
+                "dominant": false
+            },
+            {
+                "tipo": "Bastidor/Cultura",
+                "pct": 10,
+                "dominant": false
+            }
+        ],
+        "ativoDesperdicado": "Figura do Johnny como Mentor de Carreira Internacional",
+        "fraseAbertura": "Olhamos o escola de idiomas de vocês e o mercado de Limeira. Existe uma <span class='destaque-laranja'>força extraordinária em seu ativo de Figura do Johnny como Mentor de Carreira Internacional</span> que já está aí dentro, mas que hoje acaba oculta por uma comunicação que se apresenta como um criador de conteúdo de dicas rápidas que não geram engajamento nem diferenciação",
+        "evidencia": [],
+        "lacuna": {
+            "entrega": "A vivência de um nativo americano e palestrante (autoridade máxima)",
+            "comunica": "Se apresenta como um criador de conteúdo de dicas rápidas que não geram engajamento nem diferenciação."
+        },
+        "categoriaAtual": "Get Fluent English Center: Escola de Inglês em Limeira. Desde 2015 ajudando crianças, adultos e profissionais.\" (hero). Nota: O site apresentou instabilidade/erro de servidor durante a análise.",
+        "prospectX": 25,
+        "prospectY": 35,
+        "diagnosisTitle": "",
+        "diagnosisDesc": "Engajamento Morto / Conteúdo Genérico**.",
+        "diagnosisText": "Engajamento Morto / Conteúdo Genérico**. A isca deve focar no \"Desperdício de Autoridade\". O Johnny tem o diferencial que todas as escolas de idiomas tentam simular (ser nativo e palestrante), mas sua vitrine digital tem 6 mil seguidores que não reagem a nada. A oportunidade é parar de dar \"dicas grátis\" e transformar o Johnny na autoridade central de uma marca premium de Business English em Limeira, corrigindo inclusive a falha técnica do site que está fora do ar.",
+        "mercadoDesc": "Em Limeira, o mercado de escolas de idiomas se divide entre franquias de massa e concorrentes tradicionais. O território de diferenciação premium e focado no seu ativo de maior valor está livre para a sua marca dominar.",
+        "concorrentes": [
+            {
+                "nome": "English You",
+                "x": 80,
+                "y": 20,
+                "pos": "Concorrente direto em Limeira com fundador forte (Ricardo Augusto)."
+            },
+            {
+                "nome": "Purrfect Idiomas",
+                "x": 40,
+                "y": 65,
+                "pos": "Concorrente na autoridade acadêmica (Erika Jay)."
+            },
+            {
+                "nome": "Wizard/CNA Limeira",
+                "x": 20,
+                "y": 40,
+                "pos": "Franquias que o Johnny combate com o diferencial de ser nativo e focar em resultados práticos."
+            }
+        ],
+        "auditoria": [
+            {
+                "data": "Jun 11, 2026",
+                "formato": "Reel - Posicionamento/Autoridade (Palestra)",
+                "engajamento": "~25 / 2",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            },
+            {
+                "data": "Jun 08, 2026",
+                "formato": "Estático - Posicionamento/Autoridade",
+                "engajamento": "1 / 0",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            },
+            {
+                "data": "Jun 05, 2026",
+                "formato": "Reel - Posicionamento/Autoridade",
+                "engajamento": "~15 / 1",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            },
+            {
+                "data": "Mai 18, 2026",
+                "formato": "Reel - Institucional",
+                "engajamento": "~20 / 2",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Mai 14, 2026",
+                "formato": "Reel - Posicionamento/Autoridade",
+                "engajamento": "~18 / 1",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            },
+            {
+                "data": "Abr 28, 2026",
+                "formato": "Reel - Posicionamento/Autoridade",
+                "engajamento": "~20 / 2",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            },
+            {
+                "data": "Abr 20, 2026",
+                "formato": "Reel - Posicionamento/Autoridade",
+                "engajamento": "~15 / 1",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            },
+            {
+                "data": "Mar 09, 2026",
+                "formato": "Reel - Posicionamento/Autoridade",
+                "engajamento": "~18 / 2",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            },
+            {
+                "data": "Jan 21, 2026",
+                "formato": "Estático - Posicionamento/Autoridade",
+                "engajamento": "1 / 0",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            },
+            {
+                "data": "Dez 15, 2025",
+                "formato": "Reel - Institucional",
+                "engajamento": "~20 / 2",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            }
+        ]
+    },
+    "interchangeidiomas": {
+        "nomeProspect": "Interchange Idiomas",
+        "nicho": "escola de idiomas",
+        "cidade": "Mogi Guaçu",
+        "instagram": "@interchangeidiomas",
+        "seguidores": "805",
+        "taxaEngajamento": "1,76%",
+        "ressalva": "Engajamento saudável e orgânico, típico de marcas locais com comunidade fiel. No entanto, a conta usa a estratégia de \"seguir muitos\" (1.7k seguindo), o que polui o perfil e tira a percepção de autoridade de uma marca de 20 anos.",
+        "achadoMaisForte": "ativo",
+        "distribuicaoConteudo": [
+            {
+                "tipo": "Institucional",
+                "pct": 60,
+                "dominant": true
+            },
+            {
+                "tipo": "Bastidor/Cultura",
+                "pct": 30,
+                "dominant": false
+            },
+            {
+                "tipo": "Posicionamento/Autoridade",
+                "pct": 10,
+                "dominant": false
+            }
+        ],
+        "ativoDesperdicado": "Legado de 20 anos e a Figura da Fundadora",
+        "fraseAbertura": "Olhamos o escola de idiomas de vocês e o mercado de Mogi Guaçu. Existe uma <span class='destaque-laranja'>força extraordinária em seu ativo de Legado de 20 anos e a Figura da Fundadora</span> que já está aí dentro, mas que hoje acaba oculta por uma comunicação que apresenta com uma identidade visual e digital que parece amadora e ultrapassada",
+        "evidencia": [
+            "+20 anos de tradição em Mogi Guaçu.",
+            "Metodologia própria focada em comunicação.",
+            "Depoimentos reais de alunos (Lívia Rezende, Renan Ribeiro, etc.).",
+            "Oferta de Inglês, Espanhol, Alemão e Business English.",
+            "Forte presença em eventos culturais locais (Lançamento de livros, Festas)."
+        ],
+        "lacuna": {
+            "entrega": "Uma metodologia consolidada por 20 anos (confiança)",
+            "comunica": "Apresenta com uma identidade visual e digital que parece amadora e ultrapassada."
+        },
+        "categoriaAtual": "Interchange Idiomas: Processo Natural de Aprendizagem. Metodologia Dinâmica, Moderna, Completa e Prática.\" (hero). Nota: O site é visualmente datado e não reflete a modernidade prometida.",
+        "prospectX": 25,
+        "prospectY": 35,
+        "diagnosisTitle": "",
+        "diagnosisDesc": "",
+        "diagnosisText": "",
+        "mercadoDesc": "Em Mogi Guaçu, o mercado de escolas de idiomas se divide entre franquias de massa e concorrentes tradicionais. O território de diferenciação premium e focado no seu ativo de maior valor está livre para a sua marca dominar.",
+        "concorrentes": [
+            {
+                "nome": "My Way Idiomas",
+                "x": 80,
+                "y": 20,
+                "pos": "Concorrente direto em Mogi Guaçu com foco em imersão."
+            },
+            {
+                "nome": "Rock Academy",
+                "x": 40,
+                "y": 65,
+                "pos": "Escola de idiomas com pegada moderna e musical na cidade."
+            },
+            {
+                "nome": "Wizard/CNA Mogi Guaçu",
+                "x": 20,
+                "y": 40,
+                "pos": "Franquias que a Interchange combate com o peso da tradição local de duas décadas."
+            }
+        ],
+        "auditoria": [
+            {
+                "data": "Jun 15, 2026",
+                "formato": "Reel - Bastidor/Cultura",
+                "engajamento": "~15 / 1",
+                "percepção": "Bom Potencial (Falta humana)",
+                "status": "ok"
+            },
+            {
+                "data": "Jun 15, 2026",
+                "formato": "Estático - Institucional",
+                "engajamento": "~10 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Jun 12, 2026",
+                "formato": "Estático - Institucional",
+                "engajamento": "~8 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Jun 02, 2026",
+                "formato": "Estático - Posicionamento/Autoridade",
+                "engajamento": "~20 / 2",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            },
+            {
+                "data": "Mai 26, 2026",
+                "formato": "Estático - Institucional",
+                "engajamento": "~12 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Mai 14, 2026",
+                "formato": "Reel - Bastidor/Cultura",
+                "engajamento": "~18 / 1",
+                "percepção": "Bom Potencial (Falta humana)",
+                "status": "ok"
+            },
+            {
+                "data": "Mai 12, 2026",
+                "formato": "Estático - Institucional",
+                "engajamento": "~25 / 3",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Abr 29, 2026",
+                "formato": "Estático - Institucional",
+                "engajamento": "~10 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Abr 07, 2026",
+                "formato": "Estático - Institucional",
+                "engajamento": "~12 / 1",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Mar 14, 2026",
+                "formato": "Estático - Institucional",
+                "engajamento": "~12 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            }
+        ]
+    },
+    "londonenglishschool": {
+        "nomeProspect": "London English School",
+        "nicho": "escola de idiomas",
+        "cidade": "Leme",
+        "instagram": "@londonenglishschool",
+        "seguidores": "5.120",
+        "taxaEngajamento": "0,33%",
+        "ressalva": "Audiência morta. O número de \"seguindo\" (7,8k) é maior que o de seguidores, o que indica uma conta movida a automação de follow/unfollow. A marca tem volume de seguidores, mas não tem influência real.",
+        "achadoMaisForte": "engajamento",
+        "distribuicaoConteudo": [
+            {
+                "tipo": "Oferta/Matrícula",
+                "pct": 30,
+                "dominant": true
+            },
+            {
+                "tipo": "Posicionamento/Autoridade",
+                "pct": 30,
+                "dominant": false
+            },
+            {
+                "tipo": "Institucional",
+                "pct": 20,
+                "dominant": false
+            },
+            {
+                "tipo": "Outros",
+                "pct": 20,
+                "dominant": false
+            }
+        ],
+        "ativoDesperdicado": "Autoridade Acadêmica da Rafaela Zillo",
+        "fraseAbertura": "Olhamos o escola de idiomas de vocês e o mercado de Leme. Existe uma <span class='destaque-laranja'>força extraordinária em seu ativo de Autoridade Acadêmica da Rafaela Zillo</span> que já está aí dentro, mas que hoje acaba oculta por uma comunicação que se apresenta como um curso de inglês de massa para iniciantes",
+        "evidencia": [],
+        "lacuna": {
+            "entrega": "O conhecimento de uma Mestre e professora universitária",
+            "comunica": "Se apresenta como um curso de inglês de massa para iniciantes."
+        },
+        "categoriaAtual": "Escola de Inglês - Inglês fácil, do seu jeito!\" (bio).",
+        "prospectX": 25,
+        "prospectY": 35,
+        "diagnosisTitle": "",
+        "diagnosisDesc": "Engajamento Morto / Audiência Inflada**.",
+        "diagnosisText": "Engajamento Morto / Audiência Inflada**. A isca deve focar no fato de que \"5 mil seguidores não significam nada se ninguém te ouve\". A Rafaela está seguindo quase 8 mil pessoas para manter um perfil que não engaja. A oportunidade é parar de tentar ser uma \"escola grande de massa\" e assumir o branding de \"Escola de Autoridade\", conectando o CPF da Rafaela (Mestre) ao CNPJ da London.",
+        "mercadoDesc": "Em Leme, o mercado de escolas de idiomas se divide entre franquias de massa e concorrentes tradicionais. O território de diferenciação premium e focado no seu ativo de maior valor está livre para a sua marca dominar.",
+        "concorrentes": [
+            {
+                "nome": "Wizard Leme",
+                "x": 80,
+                "y": 20,
+                "pos": "Franquia tradicional que domina o mercado físico na cidade."
+            },
+            {
+                "nome": "CNA Leme",
+                "x": 40,
+                "y": 65,
+                "pos": "Outra franquia de peso com estrutura física."
+            },
+            {
+                "nome": "Teacher Rafa Zillo",
+                "x": 20,
+                "y": 40,
+                "pos": "O próprio perfil pessoal da dona, que muitas vezes compete em atenção com o perfil da escola."
+            }
+        ],
+        "auditoria": [
+            {
+                "data": "Jun 19, 2024",
+                "formato": "Estático - Oferta/Matrícula",
+                "engajamento": "~15 / 0",
+                "percepção": "Oferta sem Conexão / Panfletagem",
+                "status": "crítico"
+            },
+            {
+                "data": "Mai 15, 2024",
+                "formato": "Reel - Posicionamento/Autoridade",
+                "engajamento": "~20 / 1",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            },
+            {
+                "data": "Abr 10, 2024",
+                "formato": "Estático - Institucional",
+                "engajamento": "~12 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Mar 05, 2024",
+                "formato": "Reel - Trend/Interação",
+                "engajamento": "~25 / 2",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Fev 12, 2024",
+                "formato": "Estático - Oferta/Matrícula",
+                "engajamento": "~15 / 0",
+                "percepção": "Oferta sem Conexão / Panfletagem",
+                "status": "crítico"
+            },
+            {
+                "data": "Jan 20, 2024",
+                "formato": "Reel - Posicionamento/Autoridade",
+                "engajamento": "~20 / 1",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            },
+            {
+                "data": "Dez 15, 2023",
+                "formato": "Estático - Institucional",
+                "engajamento": "~10 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Nov 10, 2023",
+                "formato": "Reel - Bastidor/Cultura",
+                "engajamento": "~18 / 0",
+                "percepção": "Bom Potencial (Falta humana)",
+                "status": "ok"
+            },
+            {
+                "data": "Out 05, 2023",
+                "formato": "Estático - Oferta/Matrícula",
+                "engajamento": "~12 / 0",
+                "percepção": "Oferta sem Conexão / Panfletagem",
+                "status": "crítico"
+            },
+            {
+                "data": "Set 12, 2023",
+                "formato": "Reel - Posicionamento/Autoridade",
+                "engajamento": "~20 / 1",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            }
+        ]
+    },
+    "michiganidiomas": {
+        "nomeProspect": "Michigan Idiomas",
+        "nicho": "escola de idiomas",
+        "cidade": "Indaiatuba",
+        "instagram": "@michiganidiomas",
+        "seguidores": "1.096",
+        "taxaEngajamento": "0,82%",
+        "ressalva": "Engajamento nulo. O perfil é uma \"peça de museu\" digital. O alto número de \"seguindo\" (3,1k) indica que a marca tenta desesperadamente chamar atenção, mas não entrega conteúdo que retenha ou gere valor.",
+        "achadoMaisForte": "engajamento",
+        "distribuicaoConteudo": [
+            {
+                "tipo": "Institucional",
+                "pct": 80,
+                "dominant": true
+            },
+            {
+                "tipo": "Trend/Interação",
+                "pct": 20,
+                "dominant": false
+            },
+            {
+                "tipo": "Outros",
+                "pct": 0,
+                "dominant": false
+            }
+        ],
+        "ativoDesperdicado": "Autoridade de 25 anos e o Nicho 50+ / Corporativo",
+        "fraseAbertura": "Olhamos o escola de idiomas de vocês e o mercado de Indaiatuba. Existe uma <span class='destaque-laranja'>força extraordinária em seu ativo de Autoridade de 25 anos e o Nicho 50+ / Corporativo</span> que já está aí dentro, mas que hoje acaba oculta por uma comunicação que apresenta (quando comunica) como uma escola de bairro que parou em 2010",
+        "evidencia": [],
+        "lacuna": {
+            "entrega": "Uma consultoria linguística de alto nível para executivos e público 50+ (nicho premium)",
+            "comunica": "Apresenta (quando comunica) como uma escola de bairro que parou em 2010."
+        },
+        "categoriaAtual": "Michigan Indaiatuba - O mundo entende quem se comunica em inglês!\" (hero).",
+        "prospectX": 25,
+        "prospectY": 35,
+        "diagnosisTitle": "",
+        "diagnosisDesc": "Engajamento Morto / Perfil Abandonado**.",
+        "diagnosisText": "Engajamento Morto / Perfil Abandonado**. A isca deve focar no \"Silêncio da Autoridade\". Como uma marca com 25 anos de história e um nicho tão específico (50+) permite que sua única vitrine digital esteja às moscas? O \"Ativo Desperdiçado\" aqui é a própria Mônica Martins, que deveria ser a cara dessa autoridade. A oportunidade é resgatar essa marca do \"limbo digital\" e posicioná-la como a boutique de idiomas definitiva de Indaiatuba.",
+        "mercadoDesc": "Em Indaiatuba, o mercado de escolas de idiomas se divide entre franquias de massa e concorrentes tradicionais. O território de diferenciação premium e focado no seu ativo de maior valor está livre para a sua marca dominar.",
+        "concorrentes": [
+            {
+                "nome": "Asset Inglês",
+                "x": 80,
+                "y": 20,
+                "pos": "Concorrente direto na tradição (19 anos) e foco em adultos."
+            },
+            {
+                "nome": "BC English School",
+                "x": 40,
+                "y": 65,
+                "pos": "Concorrente na agilidade do método, mas com público mais jovem."
+            },
+            {
+                "nome": "Wizard/CNA",
+                "x": 20,
+                "y": 40,
+                "pos": "Franquias que dominam o varejo, mas perdem no atendimento especializado (50+)."
+            }
+        ],
+        "auditoria": [
+            {
+                "data": "Fev 14, 2024",
+                "formato": "Estático - Institucional",
+                "engajamento": "5 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Out 31, 2023",
+                "formato": "Estático - Trend/Interação",
+                "engajamento": "~10 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Ago 13, 2023",
+                "formato": "Estático - Trend/Interação",
+                "engajamento": "~8 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Jun 15, 2023",
+                "formato": "Estático - Institucional",
+                "engajamento": "~10 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Jun 06, 2023",
+                "formato": "Estático - Institucional",
+                "engajamento": "~10 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Mai 30, 2023",
+                "formato": "Estático - Institucional",
+                "engajamento": "~10 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Mai 26, 2023",
+                "formato": "Estático - Institucional",
+                "engajamento": "~10 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Mai 22, 2023",
+                "formato": "Estático - Institucional",
+                "engajamento": "~10 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Abr 09, 2023",
+                "formato": "Estático - Institucional",
+                "engajamento": "~10 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Fev 09, 2023",
+                "formato": "Estático - Institucional",
+                "engajamento": "~10 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            }
+        ]
+    },
+    "mundoenem": {
+        "nomeProspect": "Mundo Enem",
+        "nicho": "cursinho",
+        "cidade": "Indaiatuba",
+        "instagram": "@mundoenem",
+        "seguidores": "9.525",
+        "taxaEngajamento": "0,38%",
+        "ressalva": "Engajamento baixíssimo, muito aquém do saudável (1-3%). O número de seguidores (9,5k) vs. seguindo (5,4k) indica uso de automação ou follow/unfollow, criando uma audiência inflada e desqualificada que não reage. Os únicos posts que passam de 40 curtidas são os de aprovação (USP, Unicamp) onde os próprios alunos e familiares engajam.",
+        "achadoMaisForte": "engajamento",
+        "distribuicaoConteudo": [
+            {
+                "tipo": "Resultado/Prova",
+                "pct": 21,
+                "dominant": true
+            },
+            {
+                "tipo": "Institucional",
+                "pct": 16,
+                "dominant": false
+            },
+            {
+                "tipo": "Posicionamento/Autoridade",
+                "pct": 16,
+                "dominant": false
+            },
+            {
+                "tipo": "Trend/Interação",
+                "pct": 5,
+                "dominant": false
+            }
+        ],
+        "ativoDesperdicado": "Tradição de 17 anos (\"Desde 2009\") e o acompanhamento individualizado real",
+        "fraseAbertura": "Olhamos o cursinho de vocês e o mercado de Indaiatuba. Existe uma <span class='destaque-laranja'>força extraordinária em seu ativo de Tradição de 17 anos (\"Desde 2009\") e o acompanhamento individualizado real</span> que já está aí dentro, mas que hoje acaba oculta por uma comunicação que se apresenta como um cursinho genérico recém-aberto focado em panfletagem de datas e matrículas",
+        "evidencia": [],
+        "lacuna": {
+            "entrega": "17 anos de tradição e aprovações em USP/Unicamp com método individualizado",
+            "comunica": "Se apresenta como um cursinho genérico recém-aberto focado em panfletagem de datas e matrículas."
+        },
+        "categoriaAtual": "Cursinho Pré-Vestibular em Indaiatuba. Matrículas Abertas 2025\" (hero) / \"Desde 2009 o Mundo ENEM Pré-Vestibular é referência na cidade de Indaiatuba\" (snippet).",
+        "prospectX": 35,
+        "prospectY": 25,
+        "diagnosisTitle": "",
+        "diagnosisDesc": "Engajamento Morto**.",
+        "diagnosisText": "Engajamento Morto**. A distribuição de conteúdo até tenta ser variada, mas a taxa de engajamento de 0,38% e a proporção de Seguidores/Seguindo escancaram o problema real: a marca comprou/inflou uma audiência de 9,5k pessoas que não existe na prática. A isca deve focar em mostrar que \"ter 9 mil seguidores não enche sala se eles não forem alunos reais da região\", contrastando a autoridade real de 17 anos com o peso de uma rede social fantasma.",
+        "mercadoDesc": "Em Indaiatuba, o mercado de cursinhos se divide entre franquias de massa e concorrentes tradicionais. O território de diferenciação premium e focado no seu ativo de maior valor está livre para a sua marca dominar.",
+        "concorrentes": [
+            {
+                "nome": "Anglo Indaiatuba",
+                "x": 80,
+                "y": 20,
+                "pos": "\"O curso que mais aprova na cidade\" — franquia nacional pesada com estrutura de colégio grande."
+            },
+            {
+                "nome": "Progresso Vestibulares",
+                "x": 40,
+                "y": 65,
+                "pos": "Cursinho local e independente, dono-operador (Lincoln Wolff), mas com porte muito menor (133 seguidores)."
+            },
+            {
+                "nome": "FIEC Cursinho",
+                "x": 20,
+                "y": 40,
+                "pos": "Projeto municipal gratuito para moradores de Indaiatuba (concorrente indireto)."
+            }
+        ],
+        "auditoria": [
+            {
+                "data": "Jun 11, 2026",
+                "formato": "Reel - Trend/Interação (meme)",
+                "engajamento": "9 / 1",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Mai 28, 2026",
+                "formato": "Estático - Institucional",
+                "engajamento": "~15 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Mai 22, 2026",
+                "formato": "Estático - Oferta/Matrícula",
+                "engajamento": "~15 / 0",
+                "percepção": "Oferta sem Conexão / Panfletagem",
+                "status": "crítico"
+            },
+            {
+                "data": "Mai 14, 2026",
+                "formato": "Estático - Posicionamento/Autoridade",
+                "engajamento": "~15 / 0",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            },
+            {
+                "data": "Mai 13, 2026",
+                "formato": "Estático - Oferta/Matrícula (\"comente REPERTÓRIO\")",
+                "engajamento": "~20 / vários",
+                "percepção": "Oferta sem Conexão / Panfletagem",
+                "status": "crítico"
+            },
+            {
+                "data": "Mai 12, 2026",
+                "formato": "Estático - Posicionamento/Autoridade",
+                "engajamento": "~15 / 0",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            },
+            {
+                "data": "Mai 11, 2026",
+                "formato": "Estático - Posicionamento/Autoridade",
+                "engajamento": "~15 / 0",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            },
+            {
+                "data": "Mai 09, 2026",
+                "formato": "Estático - Institucional",
+                "engajamento": "~15 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Mai 09, 2026",
+                "formato": "Estático - Bastidor/Cultura",
+                "engajamento": "~15 / 0",
+                "percepção": "Bom Potencial (Falta humana)",
+                "status": "ok"
+            },
+            {
+                "data": "Mai 06, 2026",
+                "formato": "Estático - Institucional",
+                "engajamento": "~15 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Abr 30, 2026",
+                "formato": "Carrossel - Bastidor/Cultura",
+                "engajamento": "52 / 2",
+                "percepção": "Bom Potencial (Falta humana)",
+                "status": "ok"
+            },
+            {
+                "data": "Abr 28, 2026",
+                "formato": "Estático - Oferta/Matrícula",
+                "engajamento": "~15 / 0",
+                "percepção": "Oferta sem Conexão / Panfletagem",
+                "status": "crítico"
+            },
+            {
+                "data": "Fev 24, 2026",
+                "formato": "Estático - Oferta/Matrícula",
+                "engajamento": "25 / 1",
+                "percepção": "Oferta sem Conexão / Panfletagem",
+                "status": "crítico"
+            },
+            {
+                "data": "Fev 01, 2026",
+                "formato": "Reel - Resultado/Prova (Aprovado Unicamp)",
+                "engajamento": "30 / 3",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Jan 21, 2026",
+                "formato": "Reel - Oferta/Matrícula",
+                "engajamento": "9 / 0",
+                "percepção": "Oferta sem Conexão / Panfletagem",
+                "status": "crítico"
+            },
+            {
+                "data": "Jan 05, 2026",
+                "formato": "Reel - Oferta/Matrícula",
+                "engajamento": "39 / 0",
+                "percepção": "Oferta sem Conexão / Panfletagem",
+                "status": "crítico"
+            },
+            {
+                "data": "Dez 10, 2025",
+                "formato": "Estático - Resultado/Prova (Aprovado PUC)",
+                "engajamento": "8 / 2",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Abr 03, 2025",
+                "formato": "Reel - Resultado/Prova (Aprovado Unicamp)",
+                "engajamento": "108 / 3",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Jan 23, 2025",
+                "formato": "Estático - Resultado/Prova (Aprovada USP)",
+                "engajamento": "49 / 5",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            }
+        ]
+    },
+    "progressovestibulares": {
+        "nomeProspect": "Progresso Vestibulares",
+        "nicho": "cursinho",
+        "cidade": "Indaiatuba",
+        "instagram": "@progressovestibulares",
+        "seguidores": "8.300",
+        "taxaEngajamento": "0,14%",
+        "ressalva": "Engajamento inexistente. O perfil é um \"zumbi digital\". Os 8k seguidores foram claramente obtidos por táticas de follow/unfollow (seguindo 6.7k) e não refletem uma comunidade ativa. O conteúdo é 100% panfletagem de cursos, sem qualquer esforço de retenção ou autoridade.",
+        "achadoMaisForte": "engajamento",
+        "distribuicaoConteudo": [
+            {
+                "tipo": "Oferta/Matrícula",
+                "pct": 80,
+                "dominant": true
+            },
+            {
+                "tipo": "Institucional",
+                "pct": 20,
+                "dominant": false
+            },
+            {
+                "tipo": "Outros",
+                "pct": 0,
+                "dominant": false
+            }
+        ],
+        "ativoDesperdicado": "figura do Lincoln Wolff como \"Professor e Diretor\" e a base de 8k seguidores",
+        "fraseAbertura": "Olhamos o cursinho de vocês e o mercado de Indaiatuba. Existe uma <span class='destaque-laranja'>força extraordinária em seu ativo de figura do Lincoln Wolff como \"Professor e Diretor\" e a base de 8k seguidores</span> que já está aí dentro, mas que hoje acaba oculta por uma comunicação que se apresenta como uma agência de empregos ou escola profissionalizante genérica de 2010",
+        "evidencia": [],
+        "lacuna": {
+            "entrega": "Uma preparação técnica com o próprio dono em sala",
+            "comunica": "Se apresenta como uma agência de empregos ou escola profissionalizante genérica de 2010."
+        },
+        "categoriaAtual": "PROGRESSO VESTIBULARES - MATRÍCULAS ABERTAS: Cursinho Pré Vestibular 2024\" (hero).",
+        "prospectX": 35,
+        "prospectY": 25,
+        "diagnosisTitle": "",
+        "diagnosisDesc": "Distribuição de conteúdo desequilibrada (80% Oferta)** + **Engajamento Morto**.",
+        "diagnosisText": "Distribuição de conteúdo desequilibrada (80% Oferta)** + **Engajamento Morto**. A isca morde no fato de que o Lincoln está \"gastando\" o nome Progresso com um Instagram que só pede matrícula e não gera valor, transformando 8 mil seguidores em um número vazio que não ajuda a fechar turmas de alto valor. O contraste entre a \"Autoridade do Professor\" e a \"Pobreza do Perfil\" é a chave.",
+        "mercadoDesc": "Em Indaiatuba, o mercado de cursinhos se divide entre franquias de massa e concorrentes tradicionais. O território de diferenciação premium e focado no seu ativo de maior valor está livre para a sua marca dominar.",
+        "concorrentes": [
+            {
+                "nome": "Mundo Enem",
+                "x": 80,
+                "y": 20,
+                "pos": "O maior concorrente direto independente em Indaiatuba, com 17 anos de mercado e 9,5k seguidores."
+            },
+            {
+                "nome": "Anglo Indaiatuba",
+                "x": 40,
+                "y": 65,
+                "pos": "Franquia nacional que domina o topo do mercado (high ticket)."
+            },
+            {
+                "nome": "Colégio Progresso Bilíngue",
+                "x": 20,
+                "y": 40,
+                "pos": "Embora não seja cursinho puro, a marca \"Progresso\" gera confusão e o colégio tem seu próprio pré-vestibular interno."
+            }
+        ],
+        "auditoria": [
+            {
+                "data": "Jul 23, 2025",
+                "formato": "Reel (Colab) - Oferta/Matrícula (Concurso)",
+                "engajamento": "17 / 0",
+                "percepção": "Oferta sem Conexão / Panfletagem",
+                "status": "crítico"
+            },
+            {
+                "data": "Jan 19, 2023",
+                "formato": "Reel - Oferta/Matrícula",
+                "engajamento": "~10 / 0",
+                "percepção": "Oferta sem Conexão / Panfletagem",
+                "status": "crítico"
+            },
+            {
+                "data": "Jan 09, 2023",
+                "formato": "Estático - Oferta/Matrícula",
+                "engajamento": "~10 / 0",
+                "percepção": "Oferta sem Conexão / Panfletagem",
+                "status": "crítico"
+            },
+            {
+                "data": "Dez 19, 2022",
+                "formato": "Estático - Institucional",
+                "engajamento": "~10 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Nov 14, 2022",
+                "formato": "Estático - Oferta/Matrícula",
+                "engajamento": "~10 / 0",
+                "percepção": "Oferta sem Conexão / Panfletagem",
+                "status": "crítico"
+            },
+            {
+                "data": "Jul 01, 2022",
+                "formato": "Estático - Oferta/Matrícula",
+                "engajamento": "~10 / 0",
+                "percepção": "Oferta sem Conexão / Panfletagem",
+                "status": "crítico"
+            },
+            {
+                "data": "Jun 30, 2022",
+                "formato": "Estático - Oferta/Matrícula",
+                "engajamento": "~10 / 0",
+                "percepção": "Oferta sem Conexão / Panfletagem",
+                "status": "crítico"
+            },
+            {
+                "data": "Jun 28, 2022",
+                "formato": "Estático - Oferta/Matrícula",
+                "engajamento": "~10 / 0",
+                "percepção": "Oferta sem Conexão / Panfletagem",
+                "status": "crítico"
+            },
+            {
+                "data": "Dez 24, 2019",
+                "formato": "Estático - Institucional",
+                "engajamento": "~10 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Nov 09, 2019",
+                "formato": "Estático - Oferta/Matrícula",
+                "engajamento": "~10 / 0",
+                "percepção": "Oferta sem Conexão / Panfletagem",
+                "status": "crítico"
+            }
+        ]
+    },
+    "purrfectidiomas": {
+        "nomeProspect": "Purrfect Idiomas",
+        "nicho": "escola de idiomas",
+        "cidade": "Limeira",
+        "instagram": "@purridiomas",
+        "seguidores": "11.200",
+        "taxaEngajamento": "0,30%",
+        "ressalva": "Engajamento baixíssimo. A conta tem \"tamanho de influenciadora\" (11k), mas \"voz de iniciante\". A audiência parece estar anestesiada ou foi construída com estratégias de volume que não geraram conexão real.",
+        "achadoMaisForte": "engajamento",
+        "distribuicaoConteudo": [
+            {
+                "tipo": "Institucional",
+                "pct": 40,
+                "dominant": true
+            },
+            {
+                "tipo": "Posicionamento/Autoridade",
+                "pct": 20,
+                "dominant": false
+            },
+            {
+                "tipo": "Oferta/Matrícula",
+                "pct": 20,
+                "dominant": false
+            },
+            {
+                "tipo": "Bastidor/Cultura",
+                "pct": 20,
+                "dominant": false
+            }
+        ],
+        "ativoDesperdicado": "Autoridade Acadêmica da Erika Jay",
+        "fraseAbertura": "Olhamos o escola de idiomas de vocês e o mercado de Limeira. Existe uma <span class='destaque-laranja'>força extraordinária em seu ativo de Autoridade Acadêmica da Erika Jay</span> que já está aí dentro, mas que hoje acaba oculta por uma comunicação que se apresenta como uma escola de entretenimento para jovens",
+        "evidencia": [],
+        "lacuna": {
+            "entrega": "O ensino de uma especialista internacional (Erika Jay)",
+            "comunica": "Se apresenta como uma escola de entretenimento para jovens."
+        },
+        "categoriaAtual": "Escolha o idioma e aprenda com a melhor estrutura. Aprenda em nossa escola ou online em sua casa.\" (hero).",
+        "prospectX": 25,
+        "prospectY": 35,
+        "diagnosisTitle": "",
+        "diagnosisDesc": "Engajamento Morto / Audiência Inflada**.",
+        "diagnosisText": "Engajamento Morto / Audiência Inflada**. A isca deve focar no fato de que \"Ter 11 mil seguidores e apenas 30 curtidas é um sinal de que sua marca está falando sozinha\". A Purrfect tem um produto de elite (criado por uma autora), mas uma vitrine que não converte a autoridade em valor percebido. A oportunidade é profissionalizar o branding para que ele reflita o peso acadêmico da Erika, sem perder a essência vibrante da escola.",
+        "mercadoDesc": "Em Limeira, o mercado de escolas de idiomas se divide entre franquias de massa e concorrentes tradicionais. O território de diferenciação premium e focado no seu ativo de maior valor está livre para a sua marca dominar.",
+        "concorrentes": [
+            {
+                "nome": "BC English School",
+                "x": 80,
+                "y": 20,
+                "pos": "Concorrente na agilidade e método moderno."
+            },
+            {
+                "nome": "Curso Galileo",
+                "x": 40,
+                "y": 65,
+                "pos": "Concorrente em autoridade local (Limeira)."
+            },
+            {
+                "nome": "Wizard/CNA",
+                "x": 20,
+                "y": 40,
+                "pos": "Franquias que a Purrfect ataca com a promessa de \"aulas divertidas\" e \"não presas ao livro\"."
+            }
+        ],
+        "auditoria": [
+            {
+                "data": "Mai 28, 2026",
+                "formato": "Reel - Posicionamento/Autoridade",
+                "engajamento": "~30 / 2",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            },
+            {
+                "data": "Mai 20, 2026",
+                "formato": "Reel - Oferta/Matrícula",
+                "engajamento": "~25 / 0",
+                "percepção": "Oferta sem Conexão / Panfletagem",
+                "status": "crítico"
+            },
+            {
+                "data": "Mai 13, 2026",
+                "formato": "Reel - Institucional (Material)",
+                "engajamento": "~40 / 5",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Mai 09, 2026",
+                "formato": "Reel - Posicionamento/Autoridade",
+                "engajamento": "~35 / 3",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            },
+            {
+                "data": "Abr 22, 2026",
+                "formato": "Reel - Bastidor/Cultura",
+                "engajamento": "~50 / 8",
+                "percepção": "Bom Potencial (Falta humana)",
+                "status": "ok"
+            },
+            {
+                "data": "Abr 02, 2026",
+                "formato": "Reel - Trend/Interação",
+                "engajamento": "~20 / 1",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Mar 21, 2026",
+                "formato": "Estático - Institucional",
+                "engajamento": "15 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Jan 12, 2026",
+                "formato": "Reel - Institucional",
+                "engajamento": "~30 / 2",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Ago 08, 2025",
+                "formato": "Reel - Bastidor/Cultura",
+                "engajamento": "~60 / 10",
+                "percepção": "Bom Potencial (Falta humana)",
+                "status": "ok"
+            },
+            {
+                "data": "Jun 21, 2025",
+                "formato": "Reel - Institucional",
+                "engajamento": "~40 / 4",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            }
+        ]
+    },
+    "thehousepiracicaba": {
+        "nomeProspect": "The House Piracicaba",
+        "nicho": "escola de idiomas",
+        "cidade": "Piracicaba",
+        "instagram": "@thehousepiracicaba",
+        "seguidores": "5.445",
+        "taxaEngajamento": "1,05%",
+        "ressalva": "Engajamento real e pulsante. A marca tem uma comunidade fiel que interage com os eventos de imersão (Gateway Experience). O conteúdo de \"estilo de vida\" e \"experiência\" é o que mais gera conexão.",
+        "achadoMaisForte": "ativo",
+        "distribuicaoConteudo": [
+            {
+                "tipo": "Bastidor/Cultura (Eventos/Imersão)",
+                "pct": 40,
+                "dominant": true
+            },
+            {
+                "tipo": "Posicionamento/Autoridade (Método)",
+                "pct": 40,
+                "dominant": false
+            },
+            {
+                "tipo": "Institucional (Avisos/Resultados)",
+                "pct": 20,
+                "dominant": false
+            }
+        ],
+        "ativoDesperdicado": "Autoridade Corporativa e o Legado de 21 Anos",
+        "fraseAbertura": "Olhamos o escola de idiomas de vocês e o mercado de Piracicaba. Existe uma <span class='destaque-laranja'>força extraordinária em seu ativo de Autoridade Corporativa e o Legado de 21 Anos</span> que já está aí dentro, mas que hoje acaba oculta por uma comunicação que apresenta com uma identidade visual que flerta com o informal/juvenil (Básico)",
+        "evidencia": [
+            "21 anos de história em Piracicaba.",
+            "Parcerias corporativas de peso: <strong>Caterpillar</strong> e <strong>Oji Papéis</strong>.",
+            "Eventos de imersão exclusivos: <strong>Gateway Experience</strong> e <strong>Hangouts</strong>.",
+            "Método baseado em Mnemotecnia e vivência prática.",
+            "Flexibilidade total de horários (sem turmas fixas).",
+            "Alunos que viajam longas distâncias (até 400km) para estudar presencialmente."
+        ],
+        "lacuna": {
+            "entrega": "Uma experiência de imersão e resultados para grandes empresas (Elite/Corporativo)",
+            "comunica": "Apresenta com uma identidade visual que flerta com o informal/juvenil (Básico)."
+        },
+        "categoriaAtual": "The House Piracicaba: Nem escola de inglês, nem particular! Somos o seu lugar para aprender inglês de verdade e falar com confiança.\" (hero).",
+        "prospectX": 25,
+        "prospectY": 35,
+        "diagnosisTitle": "",
+        "diagnosisDesc": "",
+        "diagnosisText": "",
+        "mercadoDesc": "Em Piracicaba, o mercado de escolas de idiomas se divide entre franquias de massa e concorrentes tradicionais. O território de diferenciação premium e focado no seu ativo de maior valor está livre para a sua marca dominar.",
+        "concorrentes": [
+            {
+                "nome": "E.W.E School",
+                "x": 80,
+                "y": 20,
+                "pos": "Concorrente em Piracicaba com foco em intercâmbio."
+            },
+            {
+                "nome": "D'Accord Idiomas",
+                "x": 40,
+                "y": 65,
+                "pos": "Foco em exames de proficiência e nichos premium."
+            },
+            {
+                "nome": "Wizard / CNA Piracicaba",
+                "x": 20,
+                "y": 40,
+                "pos": "Escolas tradicionais que a The House ataca diretamente com o discurso de \"Não somos escola\"."
+            }
+        ],
+        "auditoria": [
+            {
+                "data": "Jun 11, 2026",
+                "formato": "Estático - Institucional",
+                "engajamento": "~25 / 2",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Jun 10, 2026",
+                "formato": "Reel - Posicionamento/Autoridade",
+                "engajamento": "~45 / 5",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            },
+            {
+                "data": "Mai 29, 2026",
+                "formato": "Reel - Bastidor/Cultura",
+                "engajamento": "~60 / 8",
+                "percepção": "Bom Potencial (Falta humana)",
+                "status": "ok"
+            },
+            {
+                "data": "Mai 19, 2026",
+                "formato": "Reel - Visão do Fundador (Graziela)",
+                "engajamento": "~110 / 15",
+                "percepção": "Humano e Técnico",
+                "status": "ok"
+            },
+            {
+                "data": "Mai 15, 2026",
+                "formato": "Reel - Posicionamento/Autoridade",
+                "engajamento": "~35 / 3",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            },
+            {
+                "data": "Mai 08, 2026",
+                "formato": "Reel - Posicionamento/Autoridade",
+                "engajamento": "~42 / 4",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            },
+            {
+                "data": "Mai 01, 2026",
+                "formato": "Reel - Bastidor/Cultura",
+                "engajamento": "~55 / 6",
+                "percepção": "Bom Potencial (Falta humana)",
+                "status": "ok"
+            },
+            {
+                "data": "Abr 25, 2026",
+                "formato": "Reel - Institucional",
+                "engajamento": "~30 / 2",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Mar 21, 2026",
+                "formato": "Reel - Bastidor/Cultura (Gateway)",
+                "engajamento": "~150 / 25",
+                "percepção": "Bom Potencial (Falta humana)",
+                "status": "ok"
+            },
+            {
+                "data": "Fev 15, 2026",
+                "formato": "Estático - Institucional",
+                "engajamento": "~20 / 1",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            }
+        ]
+    },
+    "whynotinstitute": {
+        "nomeProspect": "Why Not Institute",
+        "nicho": "escola de idiomas",
+        "cidade": "Indaiatuba",
+        "instagram": "@whynot_institute",
+        "seguidores": "4.430",
+        "taxaEngajamento": "0,29%",
+        "ressalva": "Audiência morta. A marca foca em \"volume\" (1.000 posts, 4k seguidores), mas não tem conexão real. O número de \"seguindo\" (7,2k) prova que os seguidores não vieram por desejo pela marca, mas por retribuição de follow.",
+        "achadoMaisForte": "engajamento",
+        "distribuicaoConteudo": [
+            {
+                "tipo": "Posicionamento/Autoridade",
+                "pct": 30,
+                "dominant": true
+            },
+            {
+                "tipo": "Institucional",
+                "pct": 30,
+                "dominant": false
+            },
+            {
+                "tipo": "Oferta/Matrícula",
+                "pct": 20,
+                "dominant": false
+            },
+            {
+                "tipo": "Outros",
+                "pct": 20,
+                "dominant": false
+            }
+        ],
+        "ativoDesperdicado": "política de \"Sem Contrato / Sem Fidelidade\" e a Sede Física",
+        "fraseAbertura": "Olhamos o escola de idiomas de vocês e o mercado de Indaiatuba. Existe uma <span class='destaque-laranja'>força extraordinária em seu ativo de política de \"Sem Contrato / Sem Fidelidade\" e a Sede Física</span> que já está aí dentro, mas que hoje acaba oculta por uma comunicação que se apresenta como um infoproduto barato de Instagram focado em \"dicas de inglês\"",
+        "evidencia": [],
+        "lacuna": {
+            "entrega": "Liberdade (sem contrato) e infraestrutura real (sede + plataforma)",
+            "comunica": "Se apresenta como um infoproduto barato de Instagram focado em \"dicas de inglês\"."
+        },
+        "categoriaAtual": "Aprenda um novo idioma com a Why Not - Escola de idiomas focada em conversação com aulas online individuais e em grupo para todo o Brasil\" (hero).",
+        "prospectX": 25,
+        "prospectY": 35,
+        "diagnosisTitle": "",
+        "diagnosisDesc": "Engajamento Morto / Audiência Inflada**.",
+        "diagnosisText": "Engajamento Morto / Audiência Inflada**. A isca deve bater na ferida de que \"quantidade não é autoridade\". Eles postaram 1.000 vezes para falar com ninguém. O Murilo está construindo um \"cemitério de conteúdo\". A proposta de valor deles (sem contrato) é forte demais para ser desperdiçada em um perfil que ninguém vê. Eles precisam parar de \"dar dica\" e começar a \"marcar posição\" contra o modelo tradicional de ensino.",
+        "mercadoDesc": "Em Indaiatuba, o mercado de escolas de idiomas se divide entre franquias de massa e concorrentes tradicionais. O território de diferenciação premium e focado no seu ativo de maior valor está livre para a sua marca dominar.",
+        "concorrentes": [
+            {
+                "nome": "BC English School",
+                "x": 80,
+                "y": 20,
+                "pos": "Concorrente direto local que também usa rodízio de professores e método rápido, mas com engajamento 50x maior."
+            },
+            {
+                "nome": "Wizard Indaiatuba",
+                "x": 40,
+                "y": 65,
+                "pos": "O \"vilão\" do mercado de contratos e fidelidade que a Why Not tenta combater."
+            },
+            {
+                "nome": "Cambly/Open English",
+                "x": 20,
+                "y": 40,
+                "pos": "Concorrentes no braço online (a Why Not briga por preço e atendimento humanizado contra eles)."
+            }
+        ],
+        "auditoria": [
+            {
+                "data": "Abr 14, 2026",
+                "formato": "Reel - Posicionamento/Autoridade",
+                "engajamento": "12 / 2",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            },
+            {
+                "data": "Mar 20, 2026",
+                "formato": "Reel - Institucional",
+                "engajamento": "~15 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Fev 15, 2026",
+                "formato": "Estático - Oferta/Matrícula",
+                "engajamento": "~10 / 0",
+                "percepção": "Oferta sem Conexão / Panfletagem",
+                "status": "crítico"
+            },
+            {
+                "data": "Jan 20, 2026",
+                "formato": "Reel - Trend/Interação",
+                "engajamento": "~20 / 1",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Dez 15, 2025",
+                "formato": "Estático - Institucional",
+                "engajamento": "~10 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            },
+            {
+                "data": "Nov 10, 2025",
+                "formato": "Reel - Posicionamento/Autoridade",
+                "engajamento": "~15 / 0",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            },
+            {
+                "data": "Out 05, 2025",
+                "formato": "Estático - Oferta/Matrícula",
+                "engajamento": "~10 / 0",
+                "percepção": "Oferta sem Conexão / Panfletagem",
+                "status": "crítico"
+            },
+            {
+                "data": "Set 12, 2025",
+                "formato": "Reel - Bastidor/Cultura",
+                "engajamento": "~15 / 0",
+                "percepção": "Bom Potencial (Falta humana)",
+                "status": "ok"
+            },
+            {
+                "data": "Ago 20, 2025",
+                "formato": "Estático - Posicionamento/Autoridade",
+                "engajamento": "~10 / 0",
+                "percepção": "Institucional Sem Vibração",
+                "status": "crítico"
+            },
+            {
+                "data": "Jul 15, 2025",
+                "formato": "Reel - Institucional",
+                "engajamento": "~15 / 0",
+                "percepção": "Informativo Frio / Genérico",
+                "status": "crítico"
+            }
+        ]
+    }
+};
+
+        // FUNÇÃO DE RENDERIZAÇÃO DINÂMICA
+        function renderProspect(key) {
+            const data = PROSPECTS_DB[key];
+            if (!data) return;
+
+            // Injetar Textos Simples
+            document.getElementById('val-cidade').textContent = data.cidade;
+            document.getElementById('val-nome-prospect').textContent = data.nomeProspect;
+            document.getElementById('val-nome-prospect-gap').textContent = data.nomeProspect;
+            document.getElementById('val-nicho-text').textContent = data.nicho;
+            document.getElementById('val-cidade-text').textContent = data.cidade;
+            document.getElementById('val-cidade-mercado').textContent = data.cidade;
+            document.getElementById('val-cidade-overlay').textContent = data.cidade;
+            document.getElementById('val-nicho-cidade-label').textContent = `${data.nicho} de ${data.cidade}`;
+            document.getElementById('val-gap-client-badge').textContent = data.nomeProspect;
+
+            // Injetar Frase de Abertura com Elogios em Laranja
+            document.getElementById('val-frase-abertura').innerHTML = `"${data.fraseAbertura}"`;
+
+            // Seção 2: Renderização Condicional
+            const sectionVimos = document.getElementById('vimos-conteudo');
+            const boxEngajamento = document.getElementById('achado-engajamento');
+            const boxDistribuicao = document.getElementById('achado-distribuicao');
+
+            if (data.achadoMaisForte === 'engajamento') {
+                sectionVimos.style.display = 'block';
+                boxEngajamento.style.display = 'block';
+                boxDistribuicao.style.display = 'none';
+
+                document.getElementById('val-seguidores').textContent = data.seguidores;
+                document.getElementById('val-taxa-engajamento').textContent = data.taxaEngajamento;
+                
+                const ressalvaRow = document.getElementById('val-ressalva-row');
+                if (data.ressalva) {
+                    ressalvaRow.style.display = 'flex';
+                    document.getElementById('val-ressalva').textContent = `* ${data.ressalva}`;
+                } else {
+                    ressalvaRow.style.display = 'none';
+                }
+
+                // Injetar textos diagnósticos de engajamento
+                document.getElementById('val-diagnosis-title-eng').textContent = data.diagnosisTitle || '';
+                document.getElementById('val-diagnosis-desc-eng').textContent = data.diagnosisDesc || '';
+                document.getElementById('val-diagnosis-text-eng').textContent = data.diagnosisText || '';
+
+            } else if (data.achadoMaisForte === 'distribuicao') {
+                sectionVimos.style.display = 'block';
+                boxEngajamento.style.display = 'none';
+                boxDistribuicao.style.display = 'block';
+
+                // Injetar textos diagnósticos de distribuição
+                document.getElementById('val-diagnosis-title-dist').textContent = data.diagnosisTitle || '';
+                document.getElementById('val-diagnosis-desc-dist').textContent = data.diagnosisDesc || '';
+                document.getElementById('val-diagnosis-text-dist').textContent = data.diagnosisText || '';
+
+                const chartContainer = document.getElementById('val-chart-container');
+                chartContainer.innerHTML = ''; // limpa
+
+                data.distribuicaoConteudo.forEach(item => {
+                    const row = document.createElement('div');
+                    row.className = 'chart-row';
+                    row.innerHTML = `
+                        <div class="chart-labels">
+                            <span class="chart-name">${item.tipo}</span>
+                            <span class="chart-pct">${item.pct}%</span>
+                        </div>
+                        <div class="chart-bar-container">
+                            <div class="chart-bar ${item.dominant ? 'dominant' : ''}" style="width: 0%"></div>
+                        </div>
+                    `;
+                    chartContainer.appendChild(row);
+
+                    // Trigger animation
+                    setTimeout(() => {
+                        row.querySelector('.chart-bar').style.width = `${item.pct}%`;
+                    }, 100);
+                });
+            } else if (data.achadoMaisForte === 'ativo') {
+                sectionVimos.style.display = 'none';
+            }
+
+            // Seção 3: Ativo Desperdiçado e Lacuna
+            document.getElementById('val-ativo-desperdicado').textContent = data.ativoDesperdicado;
+            
+            // Renderizar Elogios do Ativo em Bullet Points
+            const bulletsUl = document.getElementById('val-ativo-bullets');
+            bulletsUl.innerHTML = '';
+            data.evidencia.forEach(bulletText => {
+                const li = document.createElement('li');
+                li.innerHTML = bulletText;
+                bulletsUl.appendChild(li);
+            });
+
+            document.getElementById('val-lacuna-entrega').textContent = data.lacuna.entrega;
+            document.getElementById('val-lacuna-comunica').textContent = data.lacuna.comunica;
+
+            // Injetar descrição de mercado dinâmica
+            document.getElementById('val-mercado-desc').textContent = data.mercadoDesc || '';
+
+            // Seção 4: Mapa de Posicionamento Competitivo
+            const mapContainer = document.getElementById('map-container');
+            // Remove dots anteriores (mantendo eixos e legendas)
+            const oldDots = mapContainer.querySelectorAll('.map-dot');
+            oldDots.forEach(dot => dot.remove());
+
+            // Adiciona dot do Prospect (NÍTIDO)
+            const prospectDot = document.createElement('div');
+            prospectDot.className = 'map-dot dot-prospect';
+            prospectDot.style.left = `${data.prospectX || 25}%`;
+            prospectDot.style.bottom = `${data.prospectY || 25}%`;
+            prospectDot.textContent = data.nomeProspect;
+            mapContainer.appendChild(prospectDot);
+
+            // Adiciona dot da Oportunidade (NÍTIDO e Pulsante com Glow)
+            const optDot = document.createElement('div');
+            optDot.className = 'map-dot dot-oportunidade';
+            optDot.style.left = `75%`;
+            optDot.style.bottom = `80%`;
+            optDot.innerHTML = `✦ Espaço Oportunidade`;
+            mapContainer.appendChild(optDot);
+
+            // Adiciona dots concorrentes (LEVEMENTE BORRADO)
+            data.concorrentes.forEach(concorrente => {
+                const compDot = document.createElement('div');
+                compDot.className = 'map-dot dot-competitor';
+                compDot.style.left = `${concorrente.x}%`;
+                compDot.style.bottom = `${concorrente.y}%`;
+                compDot.textContent = concorrente.nome;
+                mapContainer.appendChild(compDot);
+            });
+
+            // Set dynamic map silhouette background watermark
+            const cityLower = data.cidade.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            if (cityLower === 'campinas') {
+                mapContainer.style.setProperty('--map-bg', "url('campinas_map.png')");
+            } else if (cityLower === 'curitiba') {
+                mapContainer.style.setProperty('--map-bg', "url('curitiba_map.png')");
+            } else if (cityLower === 'rio claro') {
+                mapContainer.style.setProperty('--map-bg', "url('rio_claro_map.png')");
+            } else if (cityLower === 'indaiatuba') {
+                mapContainer.style.setProperty('--map-bg', "url('indaiatuba_map.png')");
+            } else if (cityLower === 'piracicaba') {
+                mapContainer.style.setProperty('--map-bg', "url('piracicaba_map.png')");
+            } else if (cityLower === 'limeira') {
+                mapContainer.style.setProperty('--map-bg', "url('limeira_map.png')");
+            } else if (cityLower === 'mogi guacu') {
+                mapContainer.style.setProperty('--map-bg', "url('mogi_guacu_map.png')");
+            } else if (cityLower === 'leme') {
+                mapContainer.style.setProperty('--map-bg', "url('leme_map.png')");
+            } else {
+                mapContainer.style.setProperty('--map-bg', "none");
+            }
+
+            // Seção 5: Tabela de Auditoria
+            const tableBody = document.getElementById('audit-table-body');
+            tableBody.innerHTML = ''; // Limpa
+
+            data.auditoria.forEach((row, index) => {
+                const tr = document.createElement('tr');
+                // Borra as linhas a partir da quarta linha (index >= 3)
+                if (index >= 3) {
+                    tr.className = 'blur-row';
+                }
+                tr.innerHTML = `
+                    <td style="padding-left: 16px;">${row.data}</td>
+                    <td>${row.formato}</td>
+                    <td>${row.engajamento}</td>
+                    <td style="padding-right: 16px;"><span class="${row.status === 'ok' ? 'table-badge-ok' : 'table-badge-critico'}">${row.percepção}</span></td>
+                `;
+                tableBody.appendChild(tr);
+            });
+
+            // Configurar WhatsApp CTA
+            const ctaBtn = document.getElementById('val-cta-btn');
+            const phone = "5519992253680"; // Substitua pelo número oficial da Legado se necessário
+            const textMsg = encodeURIComponent(`Olá Legado, vi a Análise de Posicionamento da ${data.nomeProspect} em ${data.cidade} e gostaria de agendar os 20 minutos para ver o mapa completo.`);
+            ctaBtn.href = `https://wa.me/${phone}?text=${textMsg}`;
+        }
+
+        // LEITURA DOS PARÂMETROS DA URL
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            const results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        // INICIALIZAÇÃO
+        window.addEventListener('DOMContentLoaded', () => {
+            let activeProspect = getUrlParameter('p') || 'borges';
+            
+            // Valida se existe no banco, senão cai no default
+            if (!PROSPECTS_DB[activeProspect]) {
+                activeProspect = 'borges';
+            }
+
+            // Define o select do switcher para o valor correto
+            document.getElementById('select-prospect').value = activeProspect;
+
+            // Renderiza o prospect ativo
+            renderProspect(activeProspect);
+
+            // Efeito de Glow do Grid no Mouse
+            document.addEventListener('mousemove', (e) => {
+                document.documentElement.style.setProperty('--mouse-x', e.clientX + 'px');
+                document.documentElement.style.setProperty('--mouse-y', e.clientY + 'px');
+            });
+
+            // Handlers do Switcher de Testes
+            const select = document.getElementById('select-prospect');
+            select.addEventListener('change', (e) => {
+                const newProspect = e.target.value;
+                // Força o recarregamento com o novo parâmetro para reiniciar transições e garantir atualização
+                window.location.search = '?p=' + newProspect;
+            });
+
+            // Copiar Link WhatsApp
+            const copyBtn = document.getElementById('btn-copy-link');
+            copyBtn.addEventListener('click', () => {
+                const currentProspect = select.value;
+                // Monta o link para compartilhar
+                const shareUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?p=' + currentProspect + '&hide-switcher=true';
+                
+                navigator.clipboard.writeText(shareUrl).then(() => {
+                    const origText = copyBtn.textContent;
+                    copyBtn.textContent = 'Copiado!';
+                    setTimeout(() => {
+                        copyBtn.textContent = origText;
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Erro ao copiar link: ', err);
+                    alert('Erro ao copiar link. Por favor, copie manualmente da barra de endereços.');
+                });
+            });
+
+            // Mostra o switcher apenas se for local (desenvolvimento) ou se tiver editor=true/debug=true na URL
+            const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:';
+            const hasEditorParam = getUrlParameter('editor') === 'true' || getUrlParameter('debug') === 'true';
+            
+            if (!isLocal && !hasEditorParam) {
+                document.body.classList.add('hide-switcher');
+            }
+        });
+    </script>
+</body>
+</html>
