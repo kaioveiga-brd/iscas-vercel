@@ -26,7 +26,7 @@
 - 20% Bastidores
 
 **- TAXA DE ENGAJAMENTO:** **~0.80%**
-- *Ressalvas:* Engajamento baixo. As fotos padronizadas de stock não atraem novos alunos em Limeira.
+- *Ressalvas:* Engajamento baixo. As fotos padronizadas de stock não atraem novos alunos in Limeira.
 
 **- Categoria atual (Instagram):** "Escola de idiomas com foco em fluência acelerada para profissionais."
 
