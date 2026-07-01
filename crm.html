@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legado CRM Dashboard | Gestão de Prospecção</title>
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="crm_style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="db.js?v=7"></script>
+</head>
+<body>
+    <div id="grid-bg"></div>
+
+    <div class="app-container">
+        <!-- Header -->
+        <header>
+            <div class="brand-group">
+                <div class="logo">
+                    <span class="logo-text"><i class="fa-solid fa-chart-line logo-icon"></i> Legado Branding</span>
+                    <span class="logo-subtext">CRM Dashboard & Analytics</span>
+                </div>
+            </div>
+            <div class="action-group">
+                <button id="btn-export" class="btn btn-secondary"><i class="fa-solid fa-download"></i> Exportar JSON</button>
+                <button id="btn-import" class="btn btn-secondary"><i class="fa-solid fa-upload"></i> Importar Backup</button>
+                <input type="file" id="import-file" style="display: none;" accept=".json">
+                <button id="btn-reset" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i> Limpar Dados</button>
+            </div>
+        </header>
+
+        <!-- Seção 1: Analytics & KPIs -->
+        <section class="analytics-section">
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-icon icon-blue"><i class="fa-solid fa-users"></i></div>
+                    <div class="kpi-info">
+                        <span class="kpi-label">Total Prospects</span>
+                        <h3 id="kpi-total">0</h3>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon icon-orange"><i class="fa-solid fa-paper-plane"></i></div>
+                    <div class="kpi-info">
+                        <span class="kpi-label">Abordados (M1+)</span>
+                        <h3 id="kpi-contacted">0</h3>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon icon-green"><i class="fa-solid fa-comments"></i></div>
+                    <div class="kpi-info">
+                        <span class="kpi-label">Taxa de Resposta</span>
+                        <h3 id="kpi-response-rate">0%</h3>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon icon-gold"><i class="fa-solid fa-calendar-check"></i></div>
+                    <div class="kpi-info">
+                        <span class="kpi-label">R1 Marcadas</span>
+                        <h3 id="kpi-r1">0</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alternância de abas de Analytics -->
+            <div class="section-tabs">
+                <button class="section-tab-btn active" data-section-tab="tab-sec-charts"><i class="fa-solid fa-chart-pie"></i> Funil e Gráficos</button>
+                <button class="section-tab-btn" data-section-tab="tab-sec-diario"><i class="fa-solid fa-calendar-days"></i> Diário de Prospecção (Semanas)</button>
+            </div>
+
+            <!-- Aba 1: Gráficos -->
+            <div id="tab-sec-charts" class="section-tab-content active">
+                <div class="charts-grid">
+                    <div class="chart-card">
+                        <h4><i class="fa-solid fa-filter"></i> Funil de Prospecção</h4>
+                        <div class="chart-container">
+                            <canvas id="funnelChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-card">
+                        <h4><i class="fa-solid fa-chart-pie"></i> Taxa de Conversão / Retorno</h4>
+                        <div class="chart-container">
+                            <canvas id="conversionChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aba 2: Diário (Weekly Table) -->
+            <div id="tab-sec-diario" class="section-tab-content">
+                <div class="diario-card">
+                    <div class="diario-header-bar">
+                        <div class="diario-title-group">
+                            <h4><i class="fa-solid fa-calendar-days"></i> Métricas Semanais e Atividades Diárias</h4>
+                        </div>
+                        <div class="diario-controls">
+                            <button id="btn-prev-week" class="btn btn-secondary"><i class="fa-solid fa-chevron-left"></i> Semana Anterior</button>
+                            <span id="label-current-week" class="week-label">Semana: --/-- a --/--</span>
+                            <button id="btn-next-week" class="btn btn-secondary">Próxima Semana <i class="fa-solid fa-chevron-right"></i></button>
+                            <button id="btn-add-manual-log" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Lançamento Manual</button>
+                        </div>
+                    </div>
+                    
+                    <div class="table-container">
+                        <table class="diario-table">
+                            <thead>
+                                <tr>
+                                    <th>Dia / Data</th>
+                                    <th>Novos Iniciados (M1)</th>
+                                    <th>Follow-ups (F.U)</th>
+                                    <th>Total Touchpoints (TP)</th>
+                                    <th>Respostas (R)</th>
+                                    <th>Reuniões Agendadas (R.A)</th>
+                                    <th>Reuniões Realizadas (R.F)</th>
+                                    <th>Descartes (D)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="diario-table-body">
+                                <!-- Dias gerados dinamicamente -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 2: Filtros e Tabela de Pipeline -->
+        <section class="pipeline-section">
+            <div class="controls-bar">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" id="search-input" placeholder="Buscar por nome da escola, cidade, nicho...">
+                </div>
+                <div class="filter-group">
+                    <select id="filter-city">
+                        <option value="">Todas as Cidades</option>
+                    </select>
+                    <select id="filter-niche">
+                        <option value="">Todos os Nichos</option>
+                        <option value="escola de idiomas">Escola de Idiomas</option>
+                        <option value="cursinho">Cursinho</option>
+                    </select>
+                    <select id="filter-status">
+                        <option value="">Todas as Situações</option>
+                        <option value="A Contatar">A Contatar</option>
+                        <option value="1 · Mensagem enviada">1 · Mensagem enviada</option>
+                        <option value="2 · Follow-up enviado">2 · Follow-up enviado</option>
+                        <option value="Respondeu">Respondeu</option>
+                        <option value="R1 marcada">R1 marcada</option>
+                        <option value="Não / Descartado">Não / Descartado</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table class="pipeline-table">
+                    <thead>
+                        <tr>
+                            <th class="sortable" data-sort="name">Prospect <i class="fa-solid fa-sort"></i></th>
+                            <th class="sortable" data-sort="niche">Nicho <i class="fa-solid fa-sort"></i></th>
+                            <th class="sortable" data-sort="city">Cidade <i class="fa-solid fa-sort"></i></th>
+                            <th class="sortable" data-sort="followers">Seguidores <i class="fa-solid fa-sort"></i></th>
+                            <th class="sortable" data-sort="status">Situação <i class="fa-solid fa-sort"></i></th>
+                            <th class="sortable" data-sort="next-touch">Próximo Toque <i class="fa-solid fa-sort"></i></th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="pipeline-table-body">
+                        <!-- Linhas geradas dinamicamente -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="table-footer">
+                <span>Mostrando <strong id="stat-filtered">0</strong> de <strong id="stat-total">0</strong> prospects</span>
+                <span class="link-wrapper"><a href="index.html" class="link-portal"><i class="fa-solid fa-eye"></i> Ver Portal de Iscas</a></span>
+            </div>
+        </section>
+    </div>
+
+    <!-- Lead Detail Modal (Drawer) -->
+    <div id="lead-drawer" class="drawer">
+        <div class="drawer-overlay" id="drawer-overlay"></div>
+        <div class="drawer-content">
+            <button id="drawer-close" class="drawer-close-btn">&times;</button>
+            <div class="drawer-header">
+                <span id="drawer-lead-niche" class="lead-niche-tag">CURSINHO</span>
+                <h2 id="drawer-lead-name">Nome do Prospect</h2>
+                <p id="drawer-lead-city">Santo André - SP</p>
+                <div class="social-links">
+                    <a id="drawer-link-insta" href="#" target="_blank" class="social-btn insta"><i class="fa-brands fa-instagram"></i> Instagram</a>
+                    <a id="drawer-link-wa" href="#" target="_blank" class="social-btn wa"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                </div>
+            </div>
+
+            <div class="drawer-body">
+                <!-- Navigation Tabs -->
+                <div class="drawer-tabs">
+                    <button class="tab-btn active" data-tab="tab-analise">Análise Comercial</button>
+                    <button class="tab-btn" data-tab="tab-copys">Copys de Abordagem</button>
+                    <button class="tab-btn" data-tab="tab-historico">Histórico & Notas</button>
+                </div>
+
+                <!-- Tab content 1: Análise -->
+                <div id="tab-analise" class="tab-content active">
+                    <div class="info-block">
+                        <h4>Ativo Desperdiçado</h4>
+                        <p id="drawer-ativo" class="text-highlight"></p>
+                    </div>
+                    <div class="info-block">
+                        <h4>Lacuna Comercial</h4>
+                        <p id="drawer-lacuna"></p>
+                    </div>
+                    <div class="info-block">
+                        <h4>Achado mais forte</h4>
+                        <p id="drawer-achado" class="text-warning"></p>
+                    </div>
+                    <div class="info-block">
+                        <h4>Concorrentes</h4>
+                        <ul id="drawer-concorrentes" class="bullets-list"></ul>
+                    </div>
+                </div>
+
+                <!-- Tab content 2: Copys -->
+                <div id="tab-copys" class="tab-content">
+                    <div class="copy-box-group">
+                        <div class="copy-box-header">
+                            <h4>Script M1 (Abertura)</h4>
+                            <button id="btn-copy-m1" class="btn-copy"><i class="fa-solid fa-copy"></i> Copiar Mensagem</button>
+                        </div>
+                        <div id="copy-text-m1" class="copy-body"></div>
+                    </div>
+                    <div class="copy-box-group">
+                        <div class="copy-box-header">
+                            <h4>Script de Follow-up</h4>
+                            <button id="btn-copy-fup" class="btn-copy"><i class="fa-solid fa-copy"></i> Copiar Mensagem</button>
+                        </div>
+                        <div id="copy-text-fup" class="copy-body"></div>
+                    </div>
+                </div>
+
+                <!-- Tab content 3: Histórico e Acompanhamento -->
+                <div id="tab-historico" class="tab-content">
+                    <div class="form-group">
+                        <label for="lead-status-select">Situação Atual:</label>
+                        <select id="lead-status-select">
+                            <option value="A Contatar">A Contatar</option>
+                            <option value="1 · Mensagem enviada">1 · Mensagem enviada</option>
+                            <option value="2 · Follow-up enviado">2 · Follow-up enviado</option>
+                            <option value="Respondeu">Respondeu</option>
+                            <option value="R1 marcada">R1 marcada</option>
+                            <option value="Não / Descartado">Não / Descartado</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="lead-r1-done">
+                        <label for="lead-r1-done">Reunião R1 realizada com sucesso</label>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lead-next-touch">Próximo toque / Ação em:</label>
+                        <input type="date" id="lead-next-touch">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lead-notes">Anotações e Negociação:</label>
+                        <textarea id="lead-notes" rows="6" placeholder="Insira detalhes sobre as respostas, motivos de não, etc..."></textarea>
+                    </div>
+
+                    <button id="btn-save-lead" class="btn btn-primary btn-block"><i class="fa-solid fa-floppy-disk"></i> Salvar Alterações</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Manual Log Modal -->
+    <div id="manual-log-modal" class="modal">
+        <div class="modal-overlay" id="modal-log-overlay"></div>
+        <div class="modal-content">
+            <button id="modal-close" class="modal-close-btn">&times;</button>
+            <h3><i class="fa-solid fa-calendar-plus modal-icon"></i> Novo Lançamento Manual</h3>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="log-date">Data:</label>
+                    <input type="date" id="log-date">
+                </div>
+                <div class="form-group">
+                    <label for="log-type">Métrica:</label>
+                    <select id="log-type">
+                        <option value="iniciado">Novos Iniciados (M1)</option>
+                        <option value="followup">Follow-ups (F.U)</option>
+                        <option value="touchpoints">Touchpoints (TP) - Adicional</option>
+                        <option value="resposta">Respostas (R)</option>
+                        <option value="agendada">Reuniões Agendadas (R.A)</option>
+                        <option value="reuniao_feita">Reuniões Realizadas (R.F)</option>
+                        <option value="descarte">Descartes (D)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="log-qty">Quantidade (positivo ou negativo):</label>
+                    <input type="number" id="log-qty" value="1">
+                </div>
+                <button id="btn-save-log" class="btn btn-primary btn-block"><i class="fa-solid fa-check"></i> Salvar Lançamento</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="crm_script.js"></script>
+</body>
+</html>
